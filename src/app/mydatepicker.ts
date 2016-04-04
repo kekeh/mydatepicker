@@ -2,8 +2,8 @@ import {Component, Input, Output, EventEmitter, OnInit, OnChanges, SimpleChange,
 import {NgIf, NgFor, NgClass, NgStyle, NgModel} from 'angular2/common';
 import {MyDate, MyMonth} from './interfaces';
 
-const styles: string = 'app/css/mydatepicker.css';
-const template: string = 'app/template/mydatepicker.html';
+const styles: string = require('./css/mydatepicker.css');
+const template: string = require('./template/mydatepicker.html');
 
 interface DayLabels {
     [day: string]: string;
@@ -25,8 +25,8 @@ interface Week {
 @Component({
     selector: 'my-date-picker',
     directives: [NgIf, NgFor, NgClass, NgStyle],
-    templateUrl: template,
-    styleUrls: [styles]
+    styles: [styles],
+    template
 })
 
 export class MyDatePicker implements OnInit, OnChanges {
