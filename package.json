@@ -1,6 +1,6 @@
 {
   "name": "MyDatePicker",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Angular2 date picker",
   "scripts": {
     "tsc": "tsc -p src -w",

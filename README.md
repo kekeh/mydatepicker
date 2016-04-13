@@ -1,9 +1,9 @@
-# mydatepicker v. 0.0.2
+# mydatepicker v. 0.0.3
 
 **Angular2 date picker - Angular2 reusable UI component**
 
 ## Description
-Simple Angular2 date picker. Uses version "2.0.0-beta.13" of Angular2.
+Simple Angular2 date picker. Uses version "2.0.0-beta.14" of Angular2.
 
 ##Getting Started
 1. Fork and clone this repo
