@@ -1,26 +1,10 @@
 import {Component, Input, Output, EventEmitter, OnInit, OnChanges, SimpleChange, ElementRef} from 'angular2/core';
 import {NgIf, NgFor, NgClass, NgStyle, NgModel} from 'angular2/common';
-import {MyDate, MyMonth} from './interfaces';
+import {MyDate, MyMonth, MyWeek, MyDayLabels, MyMonthLabels} from './interfaces';
 
+declare var require;
 const styles: string = require('./css/mydatepicker.css');
 const template: string = require('./template/mydatepicker.html');
-
-interface DayLabels {
-    [day: string]: string;
-}
-
-interface MonthLabels {
-    [month: number]: string;
-}
-
-interface Week {
-    day: number;
-    month: number;
-    year: number;
-    cmo: number;
-    currDay: boolean;
-    sun: boolean;
-}
 
 @Component({
     selector: 'my-date-picker',
@@ -48,8 +32,8 @@ export class MyDatePicker implements OnInit, OnChanges {
     NEXT_MONTH:number = 3;
 
     // Default options
-    dayLabels:DayLabels = {su: 'Sun', mo: 'Mon', tu: 'Tue', we: 'Wed', th: 'Thu', fr: 'Fri', sa: 'Sat'};
-    monthLabels:MonthLabels = { 1: 'Jan', 2: 'Feb', 3: 'Mar', 4: 'Apr', 5: 'May', 6: 'Jun', 7: 'Jul', 8: 'Aug', 9: 'Sep', 10: 'Oct', 11: 'Nov', 12: 'Dec' };
+    dayLabels:MyDayLabels = {su: 'Sun', mo: 'Mon', tu: 'Tue', we: 'Wed', th: 'Thu', fr: 'Fri', sa: 'Sat'};
+    monthLabels:MyMonthLabels = { 1: 'Jan', 2: 'Feb', 3: 'Mar', 4: 'Apr', 5: 'May', 6: 'Jun', 7: 'Jul', 8: 'Aug', 9: 'Sep', 10: 'Oct', 11: 'Nov', 12: 'Dec' };
     dateFormat:string = 'yyyy-mm-dd'
     todayBtnTxt:string = 'Today';
     firstDayOfWeek:string = 'mo';
@@ -261,7 +245,7 @@ export class MyDatePicker implements OnInit, OnChanges {
         let dayNbr = 1;
         let cmo = this.PREV_MONTH;
         for (var i = 1; i < 7; i++) {
-            var week:Week[] = [];
+            var week:MyWeek[] = [];
             if (i === 1) {
                 // First week
                 var pm = dInPrevM - monthStart + 1;
