@@ -31,11 +31,13 @@ interface Week {
 
 export class MyDatePicker implements OnInit, OnChanges {
     @Input() options:any;
+    @Input() defaultMonth:string;
     @Input() selDate:string;
     @Output() dateChanged:EventEmitter<Object> = new EventEmitter();
 
     showSelector:boolean = false;
     visibleMonth:MyMonth = {monthTxt: '', monthNbr: 0, year: 0};
+    defaultDate:MyDate = {year: 0, month: 0, day: 0};
     selectedDate:MyDate = {year: 0, month: 0, day: 0};
     weekDays:Array<string> = [];
     dates:Array<Object> = [];
@@ -91,17 +93,11 @@ export class MyDatePicker implements OnInit, OnChanges {
     ngOnChanges(changes: {[propName: string]: SimpleChange}) {
         if (changes.hasOwnProperty('selDate')) {
             this.selectionDayTxt = changes['selDate'].currentValue;
-            if (this.selectionDayTxt !== '') {
-                let fmt = this.options.dateFormat !== undefined ? this.options.dateFormat : this.dateFormat;
-                let dpos = fmt.indexOf('dd');
-                let mpos = fmt.indexOf('mm');
-                let ypos = fmt.indexOf('yyyy');
-                this.selectedDate = {
-                    day: parseInt(this.selectionDayTxt.substring(dpos, dpos + 2)),
-                    month: parseInt(this.selectionDayTxt.substring(mpos, mpos + 2)),
-                    year: parseInt(this.selectionDayTxt.substring(ypos, ypos + 4))
-                };
-            }
+            this.selectedDate = this._parseDate(this.selectionDayTxt);
+        }
+
+        if (changes.hasOwnProperty('defaultMonth')) {
+            this.defaultDate = this._parseDate(changes['defaultMonth'].currentValue);
         }
     }
 
@@ -116,8 +112,13 @@ export class MyDatePicker implements OnInit, OnChanges {
         if (this.showSelector) {
             let y = 0, m = 0;
             if (this.selectedDate.year === 0 && this.selectedDate.month === 0 && this.selectedDate.day === 0) {
-                y = this.today.getFullYear();
-                m = this.today.getMonth() + 1;
+                if (this.defaultDate.year === 0 && this.defaultDate.month === 0) {
+                    y = this.today.getFullYear();
+                    m = this.today.getMonth() + 1;
+                } else {
+                    y = this.defaultDate.year;
+                    m = this.defaultDate.month;
+                }
             }
             else {
                 y = this.selectedDate.year;
@@ -291,5 +292,25 @@ export class MyDatePicker implements OnInit, OnChanges {
             }
             this.dates.push(week);
         }
+    }
+
+    private _parseDate(ds:string): MyDate {
+        let rv:MyDate = {day: 0, month: 0, year: 0};
+        if (ds !== '') {
+            let fmt = this.options.dateFormat !== undefined ? this.options.dateFormat : this.dateFormat;
+            let dpos = fmt.indexOf('dd');
+            if (dpos >= 0) {
+                rv.day = parseInt(ds.substring(dpos, dpos + 2));
+            }
+            let mpos = fmt.indexOf('mm');
+            if (mpos >= 0) {
+                rv.month = parseInt(ds.substring(mpos, mpos + 2));
+            }
+            let ypos = fmt.indexOf('yyyy');
+            if (ypos >= 0) {
+                rv.year = parseInt(ds.substring(ypos, ypos + 4));
+            }
+        }
+        return rv;
     }
 }
