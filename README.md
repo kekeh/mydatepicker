@@ -26,6 +26,13 @@ To install this component to an external project, follow the procedure:
                    [selDate]="selectedDate"></my-date-picker>
    ```
 
+### defaultMonth
+If `selDate` is not specified, when the datepicker is opened, it will
+ordinarily default to selecting the current date. If you would prefer
+a different year and month to be the default for a freshly chosen date
+picking operation, specify a `[defaultMonth]` in the same format as
+that for the datepicker options (`yyyy.mm` if not otherwise specified).
+
 ## Demo
 Online demo is [here](http://kekeh.github.io/mydatepicker)
 
