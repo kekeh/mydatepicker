@@ -1,1 +1,1 @@
-export {SampleDateApp} from './sample-date-app.component';
+export * from './sample-date-app.component';
