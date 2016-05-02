@@ -16,7 +16,8 @@
     "node": ">=5.4"
   },
   "scripts": {
-    "start": "./node_modules/.bin/webpack-dev-server --config webpack.js --progress"
+    "start": "./node_modules/.bin/webpack-dev-server --config webpack.js --progress",
+    "postinstall": "./node_modules/.bin/typings install"
   },
   "dependencies": {
     "angular2": "~2.0.0-beta.17",
