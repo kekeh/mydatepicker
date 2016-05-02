@@ -1,10 +1,10 @@
 import {Component, Input, Output, EventEmitter, OnInit, OnChanges, SimpleChange, ElementRef} from 'angular2/core';
 import {NgIf, NgFor, NgClass, NgStyle, NgModel} from 'angular2/common';
-import {MyDate, MyMonth, MyWeek, MyDayLabels, MyMonthLabels} from './interfaces';
+import {IMyDate, IMyMonth, IMyWeek, IMyDayLabels, IMyMonthLabels} from './interfaces/index';
 
 declare var require;
-const styles: string = require('./css/mydatepicker.css');
-const template: string = require('./template/mydatepicker.html');
+const styles: string = require('./my-date-picker.component.scss');
+const template: string = require('./my-date-picker.component.html');
 
 @Component({
     selector: 'my-date-picker',
@@ -14,32 +14,32 @@ const template: string = require('./template/mydatepicker.html');
 })
 
 export class MyDatePicker implements OnInit, OnChanges {
-    @Input() options:any;
-    @Input() selDate:string;
-    @Output() dateChanged:EventEmitter<Object> = new EventEmitter();
+    @Input() options: any;
+    @Input() selDate: string;
+    @Output() dateChanged: EventEmitter<Object> = new EventEmitter();
 
-    showSelector:boolean = false;
-    visibleMonth:MyMonth = {monthTxt: '', monthNbr: 0, year: 0};
-    selectedDate:MyDate = {year: 0, month: 0, day: 0};
-    weekDays:Array<string> = [];
-    dates:Array<Object> = [];
-    selectionDayTxt:string = '';
-    dayIdx:number = 0;
-    today:Date = null;
+    showSelector: boolean = false;
+    visibleMonth: IMyMonth = {monthTxt: '', monthNbr: 0, year: 0};
+    selectedDate: IMyDate = {year: 0, month: 0, day: 0};
+    weekDays: Array<string> = [];
+    dates: Array<Object> = [];
+    selectionDayTxt: string = '';
+    dayIdx: number = 0;
+    today: Date = null;
 
-    PREV_MONTH:number = 1;
-    CURR_MONTH:number = 2;
-    NEXT_MONTH:number = 3;
+    PREV_MONTH: number = 1;
+    CURR_MONTH: number = 2;
+    NEXT_MONTH: number = 3;
 
     // Default options
-    dayLabels:MyDayLabels = {su: 'Sun', mo: 'Mon', tu: 'Tue', we: 'Wed', th: 'Thu', fr: 'Fri', sa: 'Sat'};
-    monthLabels:MyMonthLabels = { 1: 'Jan', 2: 'Feb', 3: 'Mar', 4: 'Apr', 5: 'May', 6: 'Jun', 7: 'Jul', 8: 'Aug', 9: 'Sep', 10: 'Oct', 11: 'Nov', 12: 'Dec' };
-    dateFormat:string = 'yyyy-mm-dd'
-    todayBtnTxt:string = 'Today';
-    firstDayOfWeek:string = 'mo';
-    sunHighlight:boolean = true;
-    height:string = '34px';
-    width:string = '100%';
+    dayLabels: IMyDayLabels = {su: 'Sun', mo: 'Mon', tu: 'Tue', we: 'Wed', th: 'Thu', fr: 'Fri', sa: 'Sat'};
+    monthLabels: IMyMonthLabels = { 1: 'Jan', 2: 'Feb', 3: 'Mar', 4: 'Apr', 5: 'May', 6: 'Jun', 7: 'Jul', 8: 'Aug', 9: 'Sep', 10: 'Oct', 11: 'Nov', 12: 'Dec' };
+    dateFormat: string = 'yyyy-mm-dd'
+    todayBtnTxt: string = 'Today';
+    firstDayOfWeek: string = 'mo';
+    sunHighlight: boolean = true;
+    height: string = '34px';
+    width: string = '100%';
 
     constructor(public elem: ElementRef) {
         this.today = new Date();
@@ -245,7 +245,7 @@ export class MyDatePicker implements OnInit, OnChanges {
         let dayNbr = 1;
         let cmo = this.PREV_MONTH;
         for (var i = 1; i < 7; i++) {
-            var week:MyWeek[] = [];
+            var week: IMyWeek[] = [];
             if (i === 1) {
                 // First week
                 var pm = dInPrevM - monthStart + 1;

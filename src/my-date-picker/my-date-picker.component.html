@@ -29,10 +29,10 @@
             </tr>
         </table>
         <table class="caltable">
-            <thead><tr><th *ngFor="#d of weekDays">{{d}}</th></tr></thead>
+            <thead><tr><th *ngFor="let d of weekDays">{{d}}</th></tr></thead>
             <tbody>
-                <tr *ngFor="#w of dates">
-                    <td *ngFor="#d of w" [ngClass]="{'currmonth':d.cmo===CURR_MONTH, 'currday':d.currDay, 'selectedday':selectedDate.day===d.day && selectedDate.month===d.month && selectedDate.year===d.year && d.cmo===CURR_MONTH}" (click)="$event.stopPropagation();cellClicked(d)">
+                <tr *ngFor="let w of dates">
+                    <td *ngFor="let d of w" [ngClass]="{'currmonth':d.cmo===CURR_MONTH, 'currday':d.currDay, 'selectedday':selectedDate.day===d.day && selectedDate.month===d.month && selectedDate.year===d.year && d.cmo===CURR_MONTH}" (click)="$event.stopPropagation();cellClicked(d)">
                         <div style="background-color:inherit" [ngClass]="{'prevmonth':d.cmo===PREV_MONTH,'currmonth':d.cmo===CURR_MONTH,'nextmonth':d.cmo===NEXT_MONTH,'sunday':d.sun && d.cmo===CURR_MONTH && sunHighlight}">{{d.day}}</div>
                     </td>
                 </tr>

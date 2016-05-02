@@ -1,0 +1,1 @@
+export {SampleDateApp} from './sample-date-app.component';

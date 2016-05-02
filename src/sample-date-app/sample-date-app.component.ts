@@ -1,14 +1,18 @@
-import {bootstrap} from 'angular2/platform/browser';
 import {Component, OnInit} from 'angular2/core';
-import {MyDatePicker} from './mydatepicker';
+import {MyDatePicker} from '../my-date-picker/index';
+
+declare var require;
+const styles: string = require('./sample-date-app.component.scss');
+const template: string = require('./sample-date-app.component.html');
 
 @Component({
     selector: 'sample-date-picker',
-    template: `<my-date-picker [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [selDate]="selectedDate"></my-date-picker>`,
-    directives: [MyDatePicker]
+    directives: [MyDatePicker],
+    styles: [styles],
+    template
 })
 
-class SampleDatePicker implements OnInit {
+export class SampleDateApp implements OnInit {
     private myDatePickerOptions = {
         todayBtnTxt: 'Today',
         dateFormat: 'dd.mm.yyyy',
@@ -29,4 +33,3 @@ class SampleDatePicker implements OnInit {
         console.log('onDateChanged(): ', event.date, ' - formatted: ', event.formatted, ' - epoc timestamp: ', event.epoc);
     }
 }
-bootstrap(SampleDatePicker);

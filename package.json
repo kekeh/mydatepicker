@@ -1,11 +1,7 @@
 {
   "name": "MyDatePicker",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Angular2 date picker",
-  "scripts": {
-    "tsc": "tsc -p src -w",
-    "start": "live-server --open=src"
-  },
   "keywords": [
     "Angular2",
     "date picker"
@@ -16,21 +12,33 @@
     "type": "git",
     "url": "https://github.com/ForNeVeR/mydatepicker.git"
   },
-  "dependencies": {
-    "angular2": "2.0.0-beta.16",
-    "systemjs": "0.19.26",
-    "es6-promise": "^3.1.2",
-    "es6-shim": "^0.35.0",
-    "reflect-metadata": "0.1.2",
-    "rxjs": "5.0.0-beta.6",
-    "zone.js": "0.6.12"
-  },
-  "devDependencies": {
-    "concurrently": "^2.0.0",
-    "live-server": "^1.0.0",
-    "typescript": "^1.8.10"
-  },
   "engines": {
     "node": ">=5.4"
+  },
+  "scripts": {
+    "start": "./node_modules/.bin/webpack-dev-server --config webpack.js --progress"
+  },
+  "dependencies": {
+    "angular2": "~2.0.0-beta.17",
+    "es6-shim": "~0.35.0",
+    "reflect-metadata": "0.1.2",
+    "rxjs": "5.0.0-beta.6"
+  },
+  "devDependencies": {
+    "css-loader": "~0.23.1",
+    "extract-text-webpack-plugin": "~1.0.1",
+    "html-webpack-plugin": "~2.16.0",
+    "node-sass": "~3.6.0",
+    "postcss-loader": "~0.9.1",
+    "raw-loader": "~0.5.1",
+    "sass-loader": "~3.2.0",
+    "style-loader": "~0.13.1",
+    "ts-loader": "~0.8.2",
+    "typescript": "~1.8.10",
+    "typings": "~0.8.1",
+    "webpack": "~1.13.0",
+    "webpack-dev-server": "^1.14.1",
+    "webpack-livereload-plugin": "~0.8.1",
+    "zone.js": "~0.6.12"
   }
 }
