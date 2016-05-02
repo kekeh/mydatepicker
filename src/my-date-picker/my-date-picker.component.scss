@@ -3,8 +3,9 @@
     border-radius: 2px;
     line-height: 1.1;
     display: inline-block;
-    border: 1px solid #aaa;
     * {
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
         box-sizing: border-box;
         font-family: Arial, Helvetica, sans-serif;
         padding: 0;
@@ -17,21 +18,21 @@
         max-width: 262px;
         padding: 3px;
         border-radius: 2px;
-        background-color: #ddd;
+        background-color: #DDD;
         z-index: 100;
-        border: 1px solid #aaa;
     }
     .selectiongroup {
         position: relative;
         display: table;
         border: none;
-        background-color: $white;
+        background-color: #FFF;
     }
     .selection {
-        background-color: $white;
+        background-color: #FFF;
         display: table-cell;
         position: absolute;
         width: 100%;
+        text-align: left;
         font-size: 18px;
         font-weight: bold;
         padding: 0 64px 0 4px;
@@ -39,7 +40,6 @@
         text-overflow: ellipsis;
         white-space: nowrap;
         text-align: center;
-        color: $black;
     }
     .selbtngroup {
         position: relative;
@@ -50,64 +50,30 @@
         text-align: right;
         font-size: 0;
     }
-    .btnpicker {
+    .btnpicker, .btnclear {
         height: 100%;
         width: 30px;
         border: none;
-        border-left: 1px solid #aaa;
-        padding: 0;
+        border-left: 1px solid #AAA;
+        padding: 0px;
         cursor: pointer;
         outline: 0;
         font: inherit;
-        background: $alabaster;
-        background-image: linear-gradient(#f0f0f0 30%, #aec2e1 100%);
-        color: $black;
-        &:focus {
-            background: #add8e6;
-        }
-        &:hover {
-            background: #add8e6;
-        }
+        -moz-user-select: none;
     }
-    .btnclear {
-        height: 100%;
-        width: 30px;
-        border: none;
-        border-left: 1px solid #aaa;
-        padding: 0;
-        cursor: pointer;
-        outline: 0;
-        font: inherit;
-        background: $alabaster;
-        background-image: linear-gradient(#f0f0f0 30%, #aec2e1 100%);
-        color: $black;
-        &:focus {
-            background: #add8e6;
-        }
-        &:hover {
-            background: #add8e6;
-        }
-    }
-    .headertodaybtn {
-        background: $alabaster;
-        background-image: linear-gradient(#f0f0f0 30%, #aec2e1 100%);
-        border: 1px solid #aaa;
-        color: $black;
-        padding: 4px 6px;
-        border-radius: 2px;
-        cursor: pointer;
-        font-size: 12px;
-    }
-    .footerbtn {
-        background: $alabaster;
-        background-image: linear-gradient(#f0f0f0 30%, #aec2e1 100%);
+    .btnpicker, .btnclear, .headertodaybtn, .footerbtn {
+        background: #FAFAFA;
+        background-image: -webkit-linear-gradient(#F0F0F0 30%, #AEC2E1 100%);
+        background-image: -moz-linear-gradient(#F0F0F0 30%, #AEC2E1 100%);
+        background-image: -o-linear-gradient(#F0F0F0 30%, #AEC2E1 100%);
+        background-image: -ms-linear-gradient(#F0F0F0 30%, #AEC2E1 100%);
+        background-image: linear-gradient(#F0F0F0 30%, #AEC2E1 100%);
     }
     .header {
         width: 100%;
         height: 36px;
         margin-bottom: 1px;
-        background-color: $alabaster;
-        border: 1px solid #aaa;
+        background-color: #FAFAFA;
         td {
             vertical-align: middle;
             border: none;
@@ -127,119 +93,104 @@
     .caltable {
         table-layout: fixed;
         width: 100%;
-        background-color: $white;
+        background-color: #FFF;
         font-size: 14px;
         border-collapse: collapse;
-        color: $midnight_blue;
+        color: #003366;
         line-height: 1.1;
-        th {
+        th, td {
             border-collapse: collapse;
-            color: $midnight_blue;
+            color: #003366;
             line-height: 1.1;
+        }
+        th, td {
             padding: 5px;
             text-align: center;
-            background-color: #ddd;
+        }
+        th {
+            background-color: #DDD;
             font-size: 12px;
             vertical-align: middle;
         }
         td {
-            border-collapse: collapse;
-            color: $midnight_blue;
-            line-height: 1.1;
-            padding: 5px;
-            text-align: center;
             cursor: pointer;
             font-weight: bold;
             height: 28px;
         }
-        tbody {
-            border: 1px solid #aaa;
-            .currmonth:hover {
-                background-color: #6ad0eb;
-            }
-        }
     }
-    .prevmonth {
-        color: #ccc;
-    }
-    .nextmonth {
-        color: #ccc;
+    .prevmonth, .nextmonth {
+        color: #CCC;
     }
     .sunday {
-        color: #c30000;
+        color: #C30000;
     }
     .currmonth {
-        background-color: #f6f6f6;
+        background-color: #F6F6F6;
         font-weight: bold;
+    }
+    .currday div {
+        border: 1px solid #004198;
+        border-radius: 50%;
+    }
+    .selectedday div {
+        border: 1px solid #004198;
+        background-color: #8EBFFF !important;
+        border-radius: 0;
+    }
+    .caltable tbody .currmonth:hover {
+        background-color: #6AD0EB;
     }
     .selectmenu {
         height: 24px;
         width: 60px;
     }
     .headerbtn {
-        background-color: $alabaster;
+        background-color: #FAFAFA;
         cursor: pointer;
         display: table-cell;
-        color: $black;
     }
-    .footerarea {
-        border: 1px solid #aaa;
+    border: 1px solid #AAA;
+    .selector, .header, .footerarea {
+        border: 1px solid #AAA;
     }
     .table {
-        border: 1px solid #aaa;
-        th {
-            border: 1px solid #aaa;
-        }
-        td {
-            border: 1px solid #aaa;
+        border: 1px solid #AAA;
+        th, td {
+            border: 1px solid #AAA;
         }
     }
-    .headermonthtxt {
-        color: $black;
-        width: 40px;
-        text-align: center;
-        display: table-cell;
-        vertical-align: middle;
+    .headertodaybtn, .caltable tbody {
+        border: 1px solid #AAA;
     }
-    .headeryeartxt {
-        color: $black;
-        width: 40px;
-        text-align: center;
-        display: table-cell;
-        vertical-align: middle;
+    .btnpicker, .btnclear, .headerbtn, .headermonthtxt, .headeryeartxt, .headertodaybtn, .selection {
+        color: #000;
+    }
+    .headertodaybtn {
+        padding: 4px 6px;
+        border-radius: 2px;
+        cursor: pointer;
+        font-size: 12px;
     }
     button::-moz-focus-inner {
         border: 0;
     }
-    .icon-calendar {
+    .headermonthtxt, .headeryeartxt {
+        width: 40px;
+        text-align: center;
+        display: table-cell;
+        vertical-align: middle;
+    }
+    .btnclear:focus, .btnpicker:focus, .btnclear:hover, .btnpicker:hover {
+        background: #ADD8E6;
+    }
+    .icon-calendar, .icon-cross {
         font-size: 16px;
-        &:before {
-            content: "\e600";
-        }
     }
-    .icon-cross {
-        font-size: 16px;
-        &:before {
-            content: "\e602";
-        }
-    }
-    .icon-left {
+    .icon-left, .icon-right {
         font-size: 14px;
-        &:hover {
-            color: #63b2cc;
-        }
-        &:before {
-            content: "\e605";
-        }
     }
-    .icon-right {
-        font-size: 14px;
-        &:hover {
-            color: #63b2cc;
-        }
-        &:before {
-            content: "\e607";
-        }
+    .icon-left:hover, .icon-right:hover {
+        color: #63B2CC;
     }
     table {
         display: table;
@@ -247,21 +198,34 @@
             padding: 0;
         }
     }
-    .currday div {
-        border: 1px solid #004198;
-        //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
-        border-radius: 50%;
+    .icon {
+        font-family: 'mydatepicker';
+        speak: none;
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
     }
-    .selectedday div {
-        border: 1px solid #004198;
-        background-color: #8ebfff !important;
-        //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
-        border-radius: 0;
+    .icon-calendar:before {
+        content: "\e600";
+    }
+    .icon-cross:before {
+        content: "\e602";
+    }
+    .icon-left:before {
+        content: "\e605";
+    }
+    .icon-right:before {
+        content: "\e607";
     }
 }
+
 @font-face {
-    font-family: mydatepicker;
-    src: url(data:application/x-font-ttf;charset=utf-8;base64,AAEAAAALAIAAAwAwT1MvMg8SAssAAAC8AAAAYGNtYXDMUczTAAABHAAAAGxnYXNwAAAAEAAAAYgAAAAIZ2x5ZmFQ1q4AAAGQAAABbGhlYWQGZuTFAAAC/AAAADZoaGVhB4IDyQAAAzQAAAAkaG10eBYAAnAAAANYAAAAIGxvY2EBdAE0AAADeAAAABJtYXhwABUAPgAAA4wAAAAgbmFtZQ5R9RkAAAOsAAABnnBvc3QAAwAAAAAFTAAAACAAAwOaAZAABQAAApkCzAAAAI8CmQLMAAAB6wAzAQkAAAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAAAAAAAABAAADmBwPA/8AAQAPAAEAAAAABAAAAAAAAAAAAAAAgAAAAAAADAAAAAwAAABwAAQADAAAAHAADAAEAAAAcAAQAUAAAABAAEAADAAAAAQAg5gDmAuYF5gf//f//AAAAAAAg5gDmAuYF5gf//f//AAH/4xoEGgMaARoAAAMAAQAAAAAAAAAAAAAAAAAAAAAAAQAB//8ADwABAAAAAAAAAAAAAgAANzkBAAAAAAEAAAAAAAAAAAACAAA3OQEAAAAAAQAAAAAAAAAAAAIAADc5AQAAAAAMAEAAAAPAA4AABAAJAA4AEwAYAB0AIgAnACwAMQA2ADsAABMRMxEjFyE1IRUDITUhFQERMxEjJRUzNSMTFTM1IzMVMzUjMxUzNSMBFTM1IzMVMzUjMxUzNSMTFTM1I0Bzc0ADAP0AQAOA/IADDXNz/ZOAgCCAgMCAgMCAgP6AgIDAgIDAgIAggIADAP1AAsBzc3P9c3NzAwD9QALAgMDA/sCAgICAgID/AICAgICAgAJAwMAAAAAAAgBwADADkANQAAQACQAANwEnARcDATcBB+kCp3n9WXl5Aqd5/Vl5MAKnef1ZeQKn/Vl5Aqd5AAABAOAAAAMgA4AAAwAAAQMBJQMgA/3DASADgPyAAcPfAAEA4AAAAyADgAADAAA3EwEF4AMCPf7gAAOA/j3fAAAAAQAAAAEAAF0/BsNfDzz1AAsEAAAAAADRxFAkAAAAANHEUCQAAAAAA8ADgAAAAAgAAgAAAAAAAAABAAADwP/AAAAEAAAAAAADwAABAAAAAAAAAAAAAAAAAAAACAQAAAAAAAAAAAAAAAIAAAAEAABABAAAcAQAAOAEAADgAAAAAAAKABQAHgB6AJYApgC2AAAAAQAAAAgAPAAMAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA4ArgABAAAAAAABAAkAAAABAAAAAAACAAcAcgABAAAAAAADAAkAPAABAAAAAAAEAAkAhwABAAAAAAAFAAsAGwABAAAAAAAGAAkAVwABAAAAAAAKABoAogADAAEECQABABIACQADAAEECQACAA4AeQADAAEECQADABIARQADAAEECQAEABIAkAADAAEECQAFABYAJgADAAEECQAGABIAYAADAAEECQAKADQAvHZzZHBpY2tlcgB2AHMAZABwAGkAYwBrAGUAclZlcnNpb24gMS4wAFYAZQByAHMAaQBvAG4AIAAxAC4AMHZzZHBpY2tlcgB2AHMAZABwAGkAYwBrAGUAcnZzZHBpY2tlcgB2AHMAZABwAGkAYwBrAGUAclJlZ3VsYXIAUgBlAGcAdQBsAGEAcnZzZHBpY2tlcgB2AHMAZABwAGkAYwBrAGUAckZvbnQgZ2VuZXJhdGVkIGJ5IEljb01vb24uAEYAbwBuAHQAIABnAGUAbgBlAHIAYQB0AGUAZAAgAGIAeQAgAEkAYwBvAE0AbwBvAG4ALgAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=) format('truetype');
+    font-family: 'mydatepicker';
+    src: url(data:application/x-font-ttf;charset=utf-8;base64,AAEAAAALAIAAAwAwT1MvMg8SAssAAAC8AAAAYGNtYXDMUczTAAABHAAAAGxnYXNwAAAAEAAAAYgAAAAIZ2x5ZmFQ1q4AAAGQAAABbGhlYWQGZuTFAAAC/AAAADZoaGVhB4IDyQAAAzQAAAAkaG10eBYAAnAAAANYAAAAIGxvY2EBdAE0AAADeAAAABJtYXhwABUAPgAAA4wAAAAgbmFtZQ5R9RkAAAOsAAABnnBvc3QAAwAAAAAFTAAAACAAAwOaAZAABQAAApkCzAAAAI8CmQLMAAAB6wAzAQkAAAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAAAAAAAABAAADmBwPA/8AAQAPAAEAAAAABAAAAAAAAAAAAAAAgAAAAAAADAAAAAwAAABwAAQADAAAAHAADAAEAAAAcAAQAUAAAABAAEAADAAAAAQAg5gDmAuYF5gf//f//AAAAAAAg5gDmAuYF5gf//f//AAH/4xoEGgMaARoAAAMAAQAAAAAAAAAAAAAAAAAAAAAAAQAB//8ADwABAAAAAAAAAAAAAgAANzkBAAAAAAEAAAAAAAAAAAACAAA3OQEAAAAAAQAAAAAAAAAAAAIAADc5AQAAAAAMAEAAAAPAA4AABAAJAA4AEwAYAB0AIgAnACwAMQA2ADsAABMRMxEjFyE1IRUDITUhFQERMxEjJRUzNSMTFTM1IzMVMzUjMxUzNSMBFTM1IzMVMzUjMxUzNSMTFTM1I0Bzc0ADAP0AQAOA/IADDXNz/ZOAgCCAgMCAgMCAgP6AgIDAgIDAgIAggIADAP1AAsBzc3P9c3NzAwD9QALAgMDA/sCAgICAgID/AICAgICAgAJAwMAAAAAAAgBwADADkANQAAQACQAANwEnARcDATcBB+kCp3n9WXl5Aqd5/Vl5MAKnef1ZeQKn/Vl5Aqd5AAABAOAAAAMgA4AAAwAAAQMBJQMgA/3DASADgPyAAcPfAAEA4AAAAyADgAADAAA3EwEF4AMCPf7gAAOA/j3fAAAAAQAAAAEAAF0/BsNfDzz1AAsEAAAAAADRxFAkAAAAANHEUCQAAAAAA8ADgAAAAAgAAgAAAAAAAAABAAADwP/AAAAEAAAAAAADwAABAAAAAAAAAAAAAAAAAAAACAQAAAAAAAAAAAAAAAIAAAAEAABABAAAcAQAAOAEAADgAAAAAAAKABQAHgB6AJYApgC2AAAAAQAAAAgAPAAMAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA4ArgABAAAAAAABAAkAAAABAAAAAAACAAcAcgABAAAAAAADAAkAPAABAAAAAAAEAAkAhwABAAAAAAAFAAsAGwABAAAAAAAGAAkAVwABAAAAAAAKABoAogADAAEECQABABIACQADAAEECQACAA4AeQADAAEECQADABIARQADAAEECQAEABIAkAADAAEECQAFABYAJgADAAEECQAGABIAYAADAAEECQAKADQAvHZzZHBpY2tlcgB2AHMAZABwAGkAYwBrAGUAclZlcnNpb24gMS4wAFYAZQByAHMAaQBvAG4AIAAxAC4AMHZzZHBpY2tlcgB2AHMAZABwAGkAYwBrAGUAcnZzZHBpY2tlcgB2AHMAZABwAGkAYwBrAGUAclJlZ3VsYXIAUgBlAGcAdQBsAGEAcnZzZHBpY2tlcgB2AHMAZABwAGkAYwBrAGUAckZvbnQgZ2VuZXJhdGVkIGJ5IEljb01vb24uAEYAbwBuAHQAIABnAGUAbgBlAHIAYQB0AGUAZAAgAGIAeQAgAEkAYwBvAE0AbwBvAG4ALgAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=) format("truetype");
     font-weight: normal;
     font-style: normal;
 }
