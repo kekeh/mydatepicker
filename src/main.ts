@@ -1,5 +1,5 @@
-import { provide } from "angular2/core";
-import { bootstrap } from "angular2/platform/browser";
+import {provide} from "@angular/core";
+import {bootstrap} from "@angular/platform-browser-dynamic";
 
 // App component
 import {SampleDateApp} from "./sample-date-app/index";
