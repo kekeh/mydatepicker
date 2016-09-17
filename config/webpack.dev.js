@@ -3,10 +3,8 @@ const autoprefixer = require('autoprefixer');
 const webpack = require('webpack');
 
 // plugins
-const CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 const DedupePlugin = webpack.optimize.DedupePlugin;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OccurenceOrderPlugin = webpack.optimize.OccurenceOrderPlugin;
 const LiveReloadPlugin = require('webpack-livereload-plugin');
 
@@ -18,11 +16,20 @@ module.exports = {
 
     module: {
         loaders: [
-            {test: /\.ts$/, exclude: [/\.spec\.ts$/, /node_modules/], loader: 'ts'},
-            {test: /\.html$/, loader: 'raw'},
-            {test: /\.css$/, include: [path.resolve(__dirname, 'src')], loader: 'raw'}
+            {
+                test: /\.ts$/,
+                exclude: [/\.spec\.ts$/],
+                loader: 'ts'
+            },
+            {
+                test: /\.html$/,
+                loader: 'raw'
+            },
+            {
+                test: /\.css$/,
+                loader: "to-string-loader!css-loader"
+            }
         ],
-
         noParse: [
             /angular2\/bundles\/.+/
         ]
@@ -57,20 +64,9 @@ module.exports = {
         ]
     },
 
-    postcss: [
-        autoprefixer({ browsers: ['last 3 versions', 'Firefox ESR'] })
-    ],
-
-    sassLoader: {
-        outputStyle: 'compressed',
-        precision: 10,
-        sourceComments: false
-    },
-
     plugins: [
         new DedupePlugin(),
         new OccurenceOrderPlugin(),
-        new CommonsChunkPlugin({name: 'vendor', filename: 'vendor.js', minChunks: Infinity}),
         new HtmlWebpackPlugin({
             chunksSortMode: 'none',
             filename: 'index.html',

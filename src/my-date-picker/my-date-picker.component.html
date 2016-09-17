@@ -1,8 +1,8 @@
 <div class="mydp" [ngStyle]="{'height': height, 'width': width, 'border': inline ? 'none' : '1px solid #AAA'}">
     <div class="selectiongroup" *ngIf="!inline">
-        <span class="selection" [ngStyle]="{'height': height, 'line-height': height, 'font-size': selectionTxtFontSize}" (click)="openBtnClicked()">{{selectionDayTxt}}</span>
-        <input type="text" *ngIf="options.enableInput" class="selection" [placeholder]="options.dateFormat" maxlength="10" 
-            [ngStyle]="{'height': height, 'line-height': height, 'font-size': selectionTxtFontSize, 'border': 'none'}" (keyup)="getText($event)" [value]="selectionDayTxt">
+        <input type="text" class="selection" maxlength="10"
+                [ngStyle]="{'height': height, 'line-height': height, 'font-size': selectionTxtFontSize, 'border': 'none', 'padding-right': selectionDayTxt.length>0 ? '60px' : '30px'}"
+                (keyup)="userDateInput($event)" [value]="selectionDayTxt">
         <span class="selbtngroup" [style.height]="height">
             <button type="button" class="btnclear" *ngIf="selectionDayTxt.length>0" (click)="removeBtnClicked()" [hoverItem]="{prop: 'backgroundColor', value: true}">
                 <span class="icon icon-cross" [ngStyle]="{'line-height': height}"></span>

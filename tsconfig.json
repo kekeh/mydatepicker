@@ -1,18 +1,23 @@
 {
-  "version": "1.8.10",
   "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "outDir": "dist",
+    "rootDir": ".",
+    "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "module": "commonjs",
+    "moduleResolution": "node",
     "removeComments": true,
-    "sourceMap": true,
-    "target": "es5",
+    "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true
   },
-  "files": [
-    "src/main.ts",
-    "typings/browser.d.ts"
+  "exclude": [
+    "node_modules"
   ],
   "compileOnSave": false,
-  "buildOnSave": false
+  "buildOnSave": false,
+  "atom": {
+    "rewriteTsconfig": false
+  }
 }

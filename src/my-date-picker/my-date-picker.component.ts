@@ -1,6 +1,7 @@
 import {Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, ElementRef} from '@angular/core';
 import {IMyDate, IMyMonth, IMyWeek, IMyDayLabels, IMyMonthLabels} from './interfaces/index';
 import {LocaleService} from './my-date-picker.locale.service';
+import {DateValidatorService} from './my-date-picker.date.validator.service';
 
 declare var require:any;
 const myDpStyles: string = require('./my-date-picker.component.css');
@@ -10,7 +11,7 @@ const myDpTpl: string = require('./my-date-picker.component.html');
     selector: 'my-date-picker',
     styles: [myDpStyles],
     template: myDpTpl,
-    providers: [LocaleService]
+    providers: [LocaleService, DateValidatorService]
 })
 
 export class MyDatePicker implements OnChanges {
@@ -50,7 +51,7 @@ export class MyDatePicker implements OnChanges {
     inline: boolean = false;
     alignSelectorRight: boolean = false;
 
-    constructor(public elem: ElementRef, private localeService: LocaleService) {
+    constructor(public elem: ElementRef, private localeService: LocaleService, private dateValidatorService: DateValidatorService) {
         this.setLocaleOptions();
 
         this.today = new Date();
@@ -75,7 +76,7 @@ export class MyDatePicker implements OnChanges {
     }
 
     setOptions():void {
-        let options = ['dayLabels', 'monthLabels', 'dateFormat', 'todayBtnTxt', 'firstDayOfWeek', 'sunHighlight', 'disableUntil', 'disableSince', 'disableWeekends', 'height', 'width', 'selectionTxtFontSize', 'inline', 'alignSelectorRight', 'enableInput'];
+        let options = ['dayLabels', 'monthLabels', 'dateFormat', 'todayBtnTxt', 'firstDayOfWeek', 'sunHighlight', 'disableUntil', 'disableSince', 'disableWeekends', 'height', 'width', 'selectionTxtFontSize', 'inline', 'alignSelectorRight'];
         for (let prop of options) {
             if (this.options && (this.options)[prop] !== undefined  && (this.options)[prop] instanceof Object) {
                 (this)[prop] = JSON.parse(JSON.stringify((this.options)[prop]));
@@ -86,18 +87,14 @@ export class MyDatePicker implements OnChanges {
         }
     }
 
-    getText(event) {
-        let timestamp = Date.parse(event.target.value), date: Date;
-
-        if (isNaN(timestamp) == false && event.target.value.length == 10) {
-            date = new Date(timestamp);
-            let m = date.getMonth() + 1;
-            let y = date.getFullYear();
-
-            if (this.options.dateFormat.substring(0, 2) === 'mm') {
-                this.selectDate({ day: date.getDate(), month: m, year: y });
-            } else {
-                this.selectDate({ day: m, month: date.getDate(), year: y });
+    userDateInput(event:any):void {
+        if(event.target.value.length === 0) {
+            this.removeBtnClicked();
+        }
+        else {
+            let date:IMyDate = this.dateValidatorService.isDateValid(event.target.value, this.dateFormat);
+            if(date.day !== 0 && date.month !== 0 && date.year !== 0) {
+                this.selectDate({ day: date.day, month: date.month, year: date.year });
             }
         }
     }

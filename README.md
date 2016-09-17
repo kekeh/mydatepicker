@@ -1,11 +1,9 @@
-# mydatepicker v. 0.0.25
+# mydatepicker v. 0.0.27
 
 **Angular 2 date picker - Angular2 reusable UI component**
 
 ## Description
 Simple Angular2 date picker. Online demo is [here](http://kekeh.github.io/mydatepicker)
-
-This module uses version RC 7 of Angular 2.
 
 ## Getting Started
 1. Fork and clone this repo

@@ -42,13 +42,15 @@
     display: table-cell;
     position: absolute;
     width: 100%;
-    text-align: left;
     font-weight: bold;
-    padding: 0 64px 0 4px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     text-align: center;
+}
+
+.mydp ::-ms-clear {
+    display: none;
 }
 
 .mydp .selbtngroup {
@@ -164,7 +166,7 @@
 .mydp .disabled {
     cursor: default !important;
     color: #CCC !important;
-    background: #FFE8EB !important;
+    background: #FFEBE6 !important;
 }
 
 .mydp .sunday {
