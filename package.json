@@ -2,6 +2,7 @@
   "name": "mydatepicker",
   "version": "1.0.0",
   "description": "Angular2 date picker",
+  "main": "index.js",
   "keywords": [
     "Angular2",
     "datepicker",
