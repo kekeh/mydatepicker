@@ -23,6 +23,7 @@ export class MyDatePicker implements OnChanges {
     @Input() defaultMonth:string;
     @Input() selDate:string;
     @Output() dateChanged:EventEmitter<Object> = new EventEmitter();
+    @Output() dateStringChanged:EventEmitter<Object> = new EventEmitter();
 
     showSelector: boolean = false;
     visibleMonth: IMyMonth = {monthTxt: '', monthNbr: 0, year: 0};
@@ -132,6 +133,10 @@ export class MyDatePicker implements OnChanges {
 
     userDateInput(event:any):void {
         this.invalidDate = false;
+        let regEx:RegExp=/^(-|\+|)\d+(?!\.)[m|y|d|w]$/ig;
+        if(regEx.test(event.target.value)){
+           this.dateStringChanged.emit({dateString:event.target.value});
+        }
         if(event.target.value.length === 0) {
             this.removeBtnClicked();
         }
