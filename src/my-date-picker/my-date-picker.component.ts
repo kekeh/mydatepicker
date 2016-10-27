@@ -23,7 +23,8 @@ export class MyDatePicker implements OnChanges {
     @Input() defaultMonth:string;
     @Input() selDate:string;
     @Output() dateChanged:EventEmitter<Object> = new EventEmitter();
-
+    @Output() dateStringChanged:EventEmitter<Object> = new EventEmitter();
+    
     showSelector: boolean = false;
     visibleMonth: IMyMonth = {monthTxt: '', monthNbr: 0, year: 0};
     selectedMonth: IMyMonth = {monthTxt: '', monthNbr: 0, year: 0};
@@ -134,6 +135,11 @@ export class MyDatePicker implements OnChanges {
         this.invalidDate = false;
         if(event.target.value.length === 0) {
             this.removeBtnClicked();
+        }
+        //To support +2D to forward two days, -2W to backward two years
+        let regEx =  /^(-|\+|)\d+(?!\.)[m|y|d|w]$/ig
+        if(regEx.test(event.target.value)){
+            this.dateStringChanged.emit({dateString:event.target.value});
         }
         else {
             let date:IMyDate = this.validatorService.isDateValid(event.target.value, this.dateFormat, this.minYear, this.maxYear);
