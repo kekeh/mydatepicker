@@ -5,7 +5,7 @@ import {IMyMonthLabels} from '../interfaces/my-month-labels.interface';
 @Injectable()
 export class ValidatorService {
 
-    isDateValid(date:string, dateFormat:string, minYear:number, maxYear:number): IMyDate {
+    isDateValid(date:string, dateFormat:string, minYear:number, maxYear:number, disableUntil:IMyDate, disableSince:IMyDate): IMyDate {
         let daysInMonth:Array<number> = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
         let returnDate:IMyDate = {day: 0, month: 0, year: 0};
@@ -36,6 +36,39 @@ export class ValidatorService {
 
             if(year < minYear || year > maxYear || month < 1 || month > 12) {
                 return returnDate;
+            }
+            
+            if(disableUntil.day > 0 && disableUntil.month > 0 && disableUntil.year > 0){
+                //disableUntil is set
+                //caller assumes risk of invalid day/month/year being provided
+                if(year < disableUntil.year){
+                    return returnDate;
+                }
+                if(year === disableUntil.year){
+                    if(month < disableUntil.month){
+                        return returnDate;
+                    }
+                    if (month === disableUntil.month && day <= disableUntil.day){
+                        return returnDate;
+                    }
+                }
+                
+            }
+            
+            if (disableSince.day > 0 && disableSince.month > 0 && disableSince.year > 0){
+                //disableSince is set
+                //caller assumes risk of invalid day/month/year being provided
+                if(year > disableSince.year){
+                    return returnDate;
+                }
+                if(year === disableSince.year){
+                    if(month > disableSince.month){
+                        return returnDate;
+                    }
+                    if(month === disableSince.month && day >= disableSince.day){
+                        return returnDate;
+                    }
+                }
             }
 
             if(year % 400 === 0 || (year % 100 !== 0 && year % 4 === 0)) {

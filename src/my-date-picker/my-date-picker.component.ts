@@ -136,7 +136,7 @@ export class MyDatePicker implements OnChanges {
             this.removeBtnClicked();
         }
         else {
-            let date:IMyDate = this.validatorService.isDateValid(event.target.value, this.dateFormat, this.minYear, this.maxYear);
+            let date:IMyDate = this.validatorService.isDateValid(event.target.value, this.dateFormat, this.minYear, this.maxYear, this.disableUntil, this.disableSince);
             if(date.day !== 0 && date.month !== 0 && date.year !== 0) {
                 this.selectDate({ day: date.day, month: date.month, year: date.year });
             }
