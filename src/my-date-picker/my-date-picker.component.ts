@@ -80,25 +80,25 @@ export class MyDatePicker implements OnChanges {
     }
 
     setLocaleOptions():void {
-        let options = this.localeService.getLocaleOptions(this.locale);
+        let options: any = this.localeService.getLocaleOptions(this.locale);
         for (let prop in options) {
-            if(options[prop] instanceof Object) {
-                (this)[prop] = JSON.parse(JSON.stringify(options[prop]));
+            if(<any>(options[prop]) instanceof Object) {
+                (<any>this)[prop] = JSON.parse(JSON.stringify(options[prop]));
             }
             else {
-                (this)[prop] = options[prop];
+                (<any>this)[prop] = <any>(options[prop]);
             }
         }
     }
 
     setOptions():void {
-        let options = ['dayLabels', 'monthLabels', 'dateFormat', 'todayBtnTxt', 'firstDayOfWeek', 'sunHighlight', 'disableUntil', 'disableSince', 'disableWeekends', 'height', 'width', 'selectionTxtFontSize', 'inline', 'alignSelectorRight', 'indicateInvalidDate', 'showDateFormatPlaceholder', 'editableMonthAndYear', 'minYear', 'maxYear'];
+        let options: any = ['dayLabels', 'monthLabels', 'dateFormat', 'todayBtnTxt', 'firstDayOfWeek', 'sunHighlight', 'disableUntil', 'disableSince', 'disableWeekends', 'height', 'width', 'selectionTxtFontSize', 'inline', 'alignSelectorRight', 'indicateInvalidDate', 'showDateFormatPlaceholder', 'editableMonthAndYear', 'minYear', 'maxYear'];
         for (let prop of options) {
             if (this.options && (this.options)[prop] !== undefined  && (this.options)[prop] instanceof Object) {
-                (this)[prop] = JSON.parse(JSON.stringify((this.options)[prop]));
+                (<any>this)[prop] = JSON.parse(JSON.stringify((this.options)[prop]));
             }
             else if(this.options && (this.options)[prop] !== undefined) {
-                (this)[prop] = (this.options)[prop];
+                (<any>this)[prop] = (this.options)[prop];
             }
         }
         if(this.minYear < 1000) {
