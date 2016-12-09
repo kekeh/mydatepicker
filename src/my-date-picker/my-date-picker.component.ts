@@ -141,6 +141,7 @@ export class MyDatePicker implements OnChanges {
             }
             else {
                 this.invalidDate = true;
+                this.selectionDayTxt = event.target.value;
             }
         }
         if (this.invalidDate) {

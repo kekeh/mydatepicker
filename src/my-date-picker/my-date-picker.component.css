@@ -286,9 +286,6 @@
     color: #ADD8E6;
     outline: none;
 }
-.mydp .headerbtn:focus {
-    outline: none;
-}
 
 .mydp .daycell:focus {
     outline: 1px solid #CCC;

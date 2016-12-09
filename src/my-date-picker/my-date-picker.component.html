@@ -2,12 +2,12 @@
     <div class="selectiongroup" *ngIf="!opts.inline">
         <input type="text" class="selection" aria-label="Calendar input field" [attr.maxlength]="opts.dateFormat.length" [ngClass]="{'invaliddate': invalidDate&&opts.indicateInvalidDate}" placeholder="{{opts.showDateFormatPlaceholder?opts.dateFormat:''}}"
                 [ngStyle]="{'height': opts.height, 'line-height': opts.height, 'font-size': opts.selectionTxtFontSize, 'border': 'none', 'padding-right': selectionDayTxt.length>0 ? '60px' : '30px'}"
-                (keyup)="userDateInput($event)" [value]="selectionDayTxt" [disabled]="opts.componentDisabled" [readonly]="!opts.editableDateField">
+                (keyup)="userDateInput($event)" [value]="selectionDayTxt" [disabled]="opts.componentDisabled" [readonly]="!opts.editableDateField" aria-label="SelectedDate">
         <span class="selbtngroup" [style.height]="opts.height">
-            <button type="button" aria-label="Clear Calendar" class="btnclear" *ngIf="selectionDayTxt.length>0" (click)="removeBtnClicked()" [ngClass]="{'btnclearenabled': !opts.componentDisabled, 'btncleardisabled': opts.componentDisabled}" [disabled]="opts.componentDisabled">
+            <button type="button" class="btnclear" *ngIf="selectionDayTxt.length>0" (click)="removeBtnClicked()" [ngClass]="{'btnclearenabled': !opts.componentDisabled, 'btncleardisabled': opts.componentDisabled}" [disabled]="opts.componentDisabled" aria-label="ClearDate">
                 <span class="icon icon-cross" [ngStyle]="{'line-height': opts.height}"></span>
             </button>
-            <button type="button" aria-label="Open Calendar" class="btnpicker" (click)="openBtnClicked()" [ngClass]="{'btnpickerenabled': !opts.componentDisabled, 'btnpickerdisabled': opts.componentDisabled}" [disabled]="opts.componentDisabled">
+            <button type="button" class="btnpicker" (click)="openBtnClicked()" [ngClass]="{'btnpickerenabled': !opts.componentDisabled, 'btnpickerdisabled': opts.componentDisabled}" [disabled]="opts.componentDisabled" aria-label="OpenSelector">
                 <span class="icon icon-calendar" [ngStyle]="{'line-height': opts.height}"></span>
             </button>
         </span>
@@ -41,7 +41,7 @@
             </tr>
         </table>
         <table class="caltable">
-            <thead><tr><th class="weekdaytitle" scope="col" *ngFor="let d of weekDays">{{d}}</th></tr></thead>
+            <thead><tr><th class="weekdaytitle" *ngFor="let d of weekDays" scope="col">{{d}}</th></tr></thead>
             <tbody>
             <tr *ngFor="let w of dates">
                 <td class="daycell" *ngFor="let d of w" [ngClass]="{'currmonth':d.cmo===CURR_MONTH&&!d.disabled, 'currday':d.currDay&&opts.markCurrentDay, 'selectedday':selectedDate.day===d.dateObj.day && selectedDate.month===d.dateObj.month && selectedDate.year===d.dateObj.year && d.cmo===CURR_MONTH, 'disabled': d.disabled, 'tablesingleday': d.cmo===CURR_MONTH&&!d.disabled}" (click)="!d.disabled&&cellClicked(d);$event.stopPropagation()" (keydown)="cellKeyDown($event, d)" tabindex="0">

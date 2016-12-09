@@ -11,10 +11,10 @@ let fixture: ComponentFixture<MyDatePicker>;
 let de: DebugElement;
 let el: HTMLElement;
 
-let PREVMONTH = '.header tr td:first-child div .headerbtncell:first-child .headerbtn';
-let NEXTMONTH = '.header tr td:first-child div .headerbtncell:last-child .headerbtn';
-let PREVYEAR = '.header tr td:last-child div .headerbtncell:first-child .headerbtn';
-let NEXTYEAR = '.header tr td:last-child div .headerbtncell:last-child .headerbtn';
+let PREVMONTH: string = '.header tr td:first-child div .headerbtncell:first-child .headerbtn';
+let NEXTMONTH: string = '.header tr td:first-child div .headerbtncell:last-child .headerbtn';
+let PREVYEAR: string = '.header tr td:last-child div .headerbtncell:first-child .headerbtn';
+let NEXTYEAR: string = '.header tr td:last-child div .headerbtncell:last-child .headerbtn';
 
 function getDateString(date:any):string {
     return date.getFullYear() + '-' + (date.getMonth() + 1 < 10 ? '0' + date.getMonth() + 1 : date.getMonth() + 1) + '-' + (date.getDate() < 10 ? '0' + date.getDate() : date.getDate());
