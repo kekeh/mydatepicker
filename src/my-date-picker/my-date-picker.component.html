@@ -41,7 +41,7 @@
             </tr>
         </table>
         <table class="caltable">
-            <thead><tr><th class="weekdaytitle" *ngFor="let d of weekDays">{{d}}</th></tr></thead>
+            <thead><tr><th class="weekdaytitle" scope="col" *ngFor="let d of weekDays">{{d}}</th></tr></thead>
             <tbody>
             <tr *ngFor="let w of dates">
                 <td class="daycell" *ngFor="let d of w" [ngClass]="{'currmonth':d.cmo===CURR_MONTH&&!d.disabled, 'currday':d.currDay&&opts.markCurrentDay, 'selectedday':selectedDate.day===d.dateObj.day && selectedDate.month===d.dateObj.month && selectedDate.year===d.dateObj.year && d.cmo===CURR_MONTH, 'disabled': d.disabled, 'tablesingleday': d.cmo===CURR_MONTH&&!d.disabled}" (click)="!d.disabled&&cellClicked(d);$event.stopPropagation()" (keydown)="cellKeyDown($event, d)" tabindex="0">
