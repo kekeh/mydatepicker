@@ -1,6 +1,6 @@
 <div class="mydp" [ngStyle]="{'width': opts.width, 'border': opts.inline ? 'none' : null}">
     <div class="selectiongroup" *ngIf="!opts.inline">
-        <input type="text" class="selection" [attr.maxlength]="opts.dateFormat.length" [ngClass]="{'invaliddate': invalidDate&&opts.indicateInvalidDate}" placeholder="{{opts.showDateFormatPlaceholder?opts.dateFormat:''}}"
+        <input type="text" class="selection" aria-label="Calendar input field" [attr.maxlength]="opts.dateFormat.length" [ngClass]="{'invaliddate': invalidDate&&opts.indicateInvalidDate}" placeholder="{{opts.showDateFormatPlaceholder?opts.dateFormat:''}}"
                 [ngStyle]="{'height': opts.height, 'line-height': opts.height, 'font-size': opts.selectionTxtFontSize, 'border': 'none', 'padding-right': selectionDayTxt.length>0 ? '60px' : '30px'}"
                 (keyup)="userDateInput($event)" [value]="selectionDayTxt" [disabled]="opts.componentDisabled" [readonly]="!opts.editableDateField">
         <span class="selbtngroup" [style.height]="opts.height">
