@@ -28,4 +28,5 @@ export interface IMyOptions {
     minYear?: number;
     maxYear?: number;
     componentDisabled?: boolean;
+    [key: string]: any;
 }
