@@ -80,7 +80,8 @@ export class MyDatePicker implements OnChanges {
         maxYear: <number> this.MAX_YEAR,
         componentDisabled: <boolean> false,
         inputValueRequired: <boolean> false,
-        showSelectorArrow: <boolean> true
+        showSelectorArrow: <boolean> true,
+        showInput: <boolean> true
     };
 
     constructor(public elem: ElementRef, private renderer: Renderer, private localeService: LocaleService, private validatorService: ValidatorService) {

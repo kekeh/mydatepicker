@@ -112,6 +112,7 @@ Value of the __options__ attribute is a javascript object. It can contain the fo
 | __editableDateField__   | true | Is selection area input field editable or not (input readonly flag). Can be used if __inline = false__. |
 | __inputValueRequired__   | false | Is selection area input field value required or not (input required flag). Can be used if __inline = false__. |
 | __showSelectorArrow__   | true | Is selector (calendar) arrow shown or not. Can be used if __inline = false__. |
+| __showInput__   | true | Hide text input, just show the icon. |
 
 * Example of the options data (not all properties listed):
 ```js
