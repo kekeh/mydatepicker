@@ -17,12 +17,12 @@
             <tr>
                 <td>
                     <div style="float:left">
-                        <div class="headerbtncell"><button type="button" aria-label="Previous Month" class="headerbtn icon icon-left" (click)="prevMonth()"></button></div>
+                        <div class="headerbtncell"><button type="button" aria-label="Previous Month" class="headerbtn icon icon-left" (click)="prevMonth()" [disabled]="!enablePrevMonthButton"></button></div>
                         <div class="headermonthtxt">
                             <input type="text" *ngIf="editMonth" class="monthinput" maxlength="10" inputFocus [value]="visibleMonth.monthTxt" (keyup)="userMonthInput($event)" (click)="$event.stopPropagation()" [ngClass]="{'invalidmonth': invalidMonth}">
                             <button class="headerlabelbtn" type="button" [ngClass]="{'monthlabel': opts.editableMonthAndYear}" *ngIf="!editMonth" (click)="opts.editableMonthAndYear&&editMonthClicked($event)" tabindex="{{opts.editableMonthAndYear?'0':'-1'}}">{{visibleMonth.monthTxt}}</button>
                         </div>
-                        <div class="headerbtncell"><button type="button" aria-label="Next Month" class="headerbtn icon icon-right" (click)="nextMonth()"></button></div>
+                        <div class="headerbtncell"><button type="button" aria-label="Next Month" class="headerbtn icon icon-right" (click)="nextMonth()" [disabled]="!enableNextMonthButton"></button></div>
                     </div>
                 </td>
                 <td *ngIf="opts.showTodayBtn">
