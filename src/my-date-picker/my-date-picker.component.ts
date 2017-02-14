@@ -63,6 +63,9 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
     MIN_YEAR: number = 1000;
     MAX_YEAR: number = 9999;
 
+    enableNextMonthButton: boolean = true;
+    enablePrevMonthButton: boolean = true;
+
     // Default options
     opts: IMyOptions = {
         dayLabels: <IMyDayLabels> {},
@@ -390,6 +393,43 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
         this.generateCalendar(m, y);
     }
 
+    togglePrevNextMonthButton() {
+        //Check if next month button can be enabled
+        // Next month from calendar
+        let nextDate: Date = this.getDate(this.visibleMonth.year, this.visibleMonth.monthNbr, 1);
+        nextDate.setMonth(nextDate.getMonth() + 1);
+
+        let disableSince = this.opts.disableSince;
+        if(disableSince) {
+            let nextMonthYear: number = nextDate.getFullYear();
+            let nextMonth: number = nextDate.getMonth() + 1;
+
+            if(disableSince.year >= nextMonthYear && (disableSince.month > nextMonth || (disableSince.month == nextMonth) && disableSince.day > 1)) {
+                this.enableNextMonthButton = true;
+            } else {
+                this.enableNextMonthButton = false;
+            }
+        }
+
+        //Check if prev month button can be enabled
+        // Previous month from calendar
+        let prevDate: Date = this.getDate(this.visibleMonth.year, this.visibleMonth.monthNbr, 1);
+        prevDate.setMonth(prevDate.getMonth() - 1);
+
+        let disableUntil = this.opts.disableUntil;
+        if(disableUntil) {
+            let prevMonthYear: number = prevDate.getFullYear();
+            let prevMonth: number = prevDate.getMonth() + 1;
+
+            if(disableUntil.year <= prevMonthYear && (disableUntil.month < prevMonthYear || (disableUntil.month == prevMonthYear && disableUntil.day > 1))) {
+                this.enablePrevMonthButton = true;
+            } else {
+                this.enablePrevMonthButton = false;
+            }
+        }
+
+    }
+
     prevYear(): void {
         // Previous year from calendar
         if (this.visibleMonth.year - 1 < this.opts.minYear) {
@@ -595,6 +635,8 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
         }
         // Notify parent
         this.calendarViewChanged.emit({year: y, month: m, first: {number: 1, weekday: this.getWeekday({year: y, month: m, day: 1})}, last: {number: dInThisM, weekday: this.getWeekday({year: y, month: m, day: dInThisM})}});
+
+        this.togglePrevNextMonthButton();
     }
 
     parseSelectedDate(selDate: any): IMyDate {

@@ -290,6 +290,10 @@
     height: 18px;
 }
 
+.mydp .headerbtn[disabled] {
+    opacity: 0.3;
+}
+
 .mydp .headerbtn {
     width: 16px;
 }
