@@ -45,7 +45,8 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
     selectedDate: IMyDate = {year: 0, month: 0, day: 0};
     weekDays: Array<string> = [];
     dates: Array<Object> = [];
-    selectionDayTxt: string = "";
+    //selectionDayTxt: string = "";
+    @Input() selectionDayTxt: string = "";
     invalidDate: boolean = false;
     disableTodayBtn: boolean = false;
     dayIdx: number = 0;
