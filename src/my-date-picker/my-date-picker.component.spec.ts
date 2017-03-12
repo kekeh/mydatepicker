@@ -2006,6 +2006,112 @@ describe('MyDatePicker', () => {
 
     });
 
+    it('locale - use id locale', () => {
+        comp.selectedMonth = {monthTxt: '', monthNbr: 1, year: 2016};
+        comp.locale = 'id';
+
+        comp.parseOptions();
+
+        fixture.detectChanges();
+        let btnpicker = getElement('.btnpicker');
+        btnpicker.nativeElement.click();
+
+        fixture.detectChanges();
+        let days = getElements('.caltable thead tr th');
+        expect(days.length).toBe(7);
+        expect(days[0].nativeElement.textContent).toBe('Min');
+        expect(days[1].nativeElement.textContent).toBe('Sen');
+        expect(days[2].nativeElement.textContent).toBe('Sel');
+        expect(days[3].nativeElement.textContent).toBe('Rab');
+        expect(days[4].nativeElement.textContent).toBe('Kam');
+        expect(days[5].nativeElement.textContent).toBe('Jum');
+        expect(days[6].nativeElement.textContent).toBe('Sab');
+
+        fixture.detectChanges();
+        let nextmonth = getElement(NEXTMONTH);
+        expect(nextmonth).not.toBe(null);
+
+        fixture.detectChanges();
+        let monthLabel = getElement('.headermonthtxt .headerlabelbtn');
+        expect(monthLabel.nativeElement.textContent).toBe('Jan');
+
+        nextmonth.nativeElement.click();
+        fixture.detectChanges();
+        monthLabel = getElement('.headermonthtxt .headerlabelbtn');
+        expect(monthLabel.nativeElement.textContent).toBe('Feb');
+
+        nextmonth.nativeElement.click();
+        fixture.detectChanges();
+        monthLabel = getElement('.headermonthtxt .headerlabelbtn');
+        expect(monthLabel.nativeElement.textContent).toBe('Mar');
+
+        nextmonth.nativeElement.click();
+        fixture.detectChanges();
+        monthLabel = getElement('.headermonthtxt .headerlabelbtn');
+        expect(monthLabel.nativeElement.textContent).toBe('Apr');
+
+        nextmonth.nativeElement.click();
+        fixture.detectChanges();
+        monthLabel = getElement('.headermonthtxt .headerlabelbtn');
+        expect(monthLabel.nativeElement.textContent).toBe('Mei');
+
+        nextmonth.nativeElement.click();
+        fixture.detectChanges();
+        monthLabel = getElement('.headermonthtxt .headerlabelbtn');
+        expect(monthLabel.nativeElement.textContent).toBe('Jun');
+
+        nextmonth.nativeElement.click();
+        fixture.detectChanges();
+        monthLabel = getElement('.headermonthtxt .headerlabelbtn');
+        expect(monthLabel.nativeElement.textContent).toBe('Jul');
+
+        nextmonth.nativeElement.click();
+        fixture.detectChanges();
+        monthLabel = getElement('.headermonthtxt .headerlabelbtn');
+        expect(monthLabel.nativeElement.textContent).toBe('Ags');
+
+        nextmonth.nativeElement.click();
+        fixture.detectChanges();
+        monthLabel = getElement('.headermonthtxt .headerlabelbtn');
+        expect(monthLabel.nativeElement.textContent).toBe('Sep');
+
+        nextmonth.nativeElement.click();
+        fixture.detectChanges();
+        monthLabel = getElement('.headermonthtxt .headerlabelbtn');
+        expect(monthLabel.nativeElement.textContent).toBe('Okt');
+
+        nextmonth.nativeElement.click();
+        fixture.detectChanges();
+        monthLabel = getElement('.headermonthtxt .headerlabelbtn');
+        expect(monthLabel.nativeElement.textContent).toBe('Nov');
+
+        nextmonth.nativeElement.click();
+        fixture.detectChanges();
+        monthLabel = getElement('.headermonthtxt .headerlabelbtn');
+        expect(monthLabel.nativeElement.textContent).toBe('Des');
+
+        fixture.detectChanges();
+        let headertodaybtn = getElement('.headertodaybtn');
+        expect(headertodaybtn).not.toBe(null);
+        expect(headertodaybtn.nativeElement.textContent).toBe('Hari ini');
+
+        fixture.detectChanges();
+        let firstDayOfWeek = getElement('.caltable thead tr th:first-child');
+        expect(firstDayOfWeek).not.toBe(null);
+        expect(firstDayOfWeek.nativeElement.textContent).toBe('Min');
+
+        fixture.detectChanges();
+        let sunday = getElement('.sunday');
+        expect(sunday).not.toBe(null);
+
+        comp.userDateInput({target:{value:'10-10-2016'}});
+        expect(comp.invalidDate).toBe(false);
+
+        fixture.detectChanges();
+        let invaliddate = getElement('.invaliddate');
+        expect(invaliddate).toBe(null);
+    });
+
 });
 
 

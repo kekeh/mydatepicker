@@ -60,7 +60,12 @@ export class SampleDatePickerAccessModifier implements OnInit {
 
     // Reactive forms functions here
     onSubmitReactiveForms(): void {
-        console.log('Value: ', this.myForm.controls['myDate'].value, ' - Valid: ', this.myForm.controls['myDate'].valid, ' - Dirty: ', this.myForm.controls['myDate'].dirty, ' - Touched: ', this.myForm.controls['myDate'].touched);
+        console.log('Value: ', this.myForm.controls['myDate'].value,
+            ' - Valid: ', this.myForm.controls['myDate'].valid,
+            ' - Invalid: ', this.myForm.controls['myDate'].invalid,
+            ' - Dirty: ', this.myForm.controls['myDate'].dirty,
+            ' - Pristine: ', this.myForm.controls['myDate'].pristine,
+            ' - Touched: ', this.myForm.controls['myDate'].touched);
     }
 
     setDate(): void {

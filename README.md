@@ -247,7 +247,7 @@ Value of the __options__ attribute is a type of [IMyOptions](https://github.com/
 
 An ISO 639-1 language code can be provided as shorthand for the following options (dayLabels, monthLabels, dateFormat, todayBtnTxt, firstDayOfWeek and sunHighlight).
 Currently supported languages: __en__, __fr__, __ja__, __fi__, __es__, __hu__, __sv__, __nl__, __ru__, __uk__, __no__, __tr__,
-__pt-br__, __de__, __it__, __it-ch__, __pl__, __my__, __sk__, __sl__, __zh-cn__, __he__, __ro__ and __ca__.
+__pt-br__, __de__, __it__, __it-ch__, __pl__, __my__, __sk__, __sl__, __zh-cn__, __he__, __ro__, __ca__ and __id__.
 
 The __locale__ options can be override by __options__ attribute.
 

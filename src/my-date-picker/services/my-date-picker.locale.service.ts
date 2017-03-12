@@ -194,6 +194,14 @@ export class LocaleService {
             todayBtnTxt: "Avui",
             firstDayOfWeek: "mo",
             sunHighlight: true,
+        },
+        "id": {
+            dayLabels: {su: "Min", mo: "Sen", tu: "Sel", we: "Rab", th: "Kam", fr: "Jum", sa: "Sab"},
+            monthLabels: {1: "Jan", 2: "Feb", 3: "Mar", 4: "Apr", 5: "Mei", 6: "Jun", 7: "Jul", 8: "Ags", 9: "Sep", 10: "Okt", 11: "Nov", 12: "Des"},
+            dateFormat: "dd-mm-yyyy",
+            todayBtnTxt: "Hari ini",
+            firstDayOfWeek: "su",
+            sunHighlight: true
         }
     };
 
