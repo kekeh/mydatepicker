@@ -1,7 +1,7 @@
 <div class="mydp" [ngStyle]="{'width': getComponentWidth(), 'border': opts.inline ? 'none' : null}">
     <div class="selectiongroup" *ngIf="!opts.inline">
         <input *ngIf="opts.showInputField" ngtype="text" class="selection" [attr.aria-label]="opts.ariaLabelInputField" [attr.maxlength]="opts.dateFormat.length" [ngClass]="{'invaliddate': invalidDate&&opts.indicateInvalidDate}" placeholder="{{placeholder}}"
-                [myinputautofill]="autoFillOpts" [ngStyle]="{'height': opts.height, 'line-height': opts.height, 'font-size': opts.selectionTxtFontSize, 'border': 'none', 'padding-right': selectionDayTxt.length>0&&opts.showClearDateBtn ? '60px' : '30px'}"
+                myinputnumeric [myinputautofill]="autoFillOpts" [ngStyle]="{'height': opts.height, 'line-height': opts.height, 'font-size': opts.selectionTxtFontSize, 'border': 'none', 'padding-right': selectionDayTxt.length>0&&opts.showClearDateBtn ? '60px' : '30px'}"
                 (keyup)="userDateInput($event)" [value]="selectionDayTxt" (blur)="lostFocusInput($event)" [disabled]="opts.componentDisabled" [readonly]="!opts.editableDateField" [required]="opts.inputValueRequired" (click)="handleInputClick($event)">
         <div class="selbtngroup" [style.height]="opts.height">
             <button type="button" [attr.aria-label]="opts.ariaLabelClearDate" class="btnclear" *ngIf="selectionDayTxt.length>0&&opts.showClearDateBtn" (click)="removeBtnClicked()" [ngClass]="{'btnclearenabled': !opts.componentDisabled, 'btncleardisabled': opts.componentDisabled, 'btnleftborder': opts.showInputField}" [disabled]="opts.componentDisabled">
