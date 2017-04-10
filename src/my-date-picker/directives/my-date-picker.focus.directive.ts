@@ -5,9 +5,10 @@ import { Directive, ElementRef, Renderer, AfterViewInit, Input } from "@angular/
 })
 
 export class FocusDirective implements AfterViewInit {
+    // tslint:disable-next-line:no-input-rename
     @Input("mydpfocus") value: string;
 
-    constructor(private el: ElementRef, private renderer: Renderer) {}
+    constructor(private el: ElementRef, private renderer: Renderer) { }
 
     // Focus to element: if value 0 = don't set focus, 1 = set only focus, 2 = set focus and set cursor position
     ngAfterViewInit() {
