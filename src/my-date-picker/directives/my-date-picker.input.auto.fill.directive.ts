@@ -6,9 +6,10 @@ import { IMyInputAutoFill } from "../interfaces/my-input-auto-fill.interface";
 })
 
 export class InputAutoFillDirective {
+    // tslint:disable-next-line:no-input-rename
     @Input("myinputautofill") opts: IMyInputAutoFill;
 
-    constructor(private el: ElementRef, private rndr: Renderer) {}
+    constructor(private el: ElementRef, private rndr: Renderer) { }
 
     @HostListener("keyup", ["$event"]) onKeyUp(evt: KeyboardEvent) {
         if (!this.opts.enabled || evt.keyCode === 8 || evt.keyCode === 46) {

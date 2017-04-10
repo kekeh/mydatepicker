@@ -9,7 +9,7 @@ import { JustNumbersDirective } from "./directives/my-date-picker.just-numbers.d
 @NgModule({
     imports: [CommonModule, FormsModule],
     declarations: [MyDatePicker, FocusDirective, InputAutoFillDirective, JustNumbersDirective],
-    exports: [MyDatePicker, FocusDirective, InputAutoFillDirective]
+    exports: [MyDatePicker, FocusDirective, InputAutoFillDirective, JustNumbersDirective]
 })
 export class MyDatePickerModule {
 }
