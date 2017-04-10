@@ -14,7 +14,10 @@ export class JustNumbersDirective {
         if (this.justNumbers) {
             const e = <KeyboardEvent>event;
 
-            if ([46, 8, 9, 27, 13, 110, 190].indexOf(e.keyCode) !== -1 ||
+            /*
+        13 enter, 27 esc, 9 tab, 8 backspace, 46 delete
+        */
+            if ([46, 8, 9, 27, 13].indexOf(e.keyCode) !== -1 ||
                 // Allow: Ctrl+A
                 (e.keyCode === 65 && e.ctrlKey === true) ||
                 // Allow: Ctrl+C
@@ -23,16 +26,15 @@ export class JustNumbersDirective {
                 (e.keyCode === 88 && e.ctrlKey === true) ||
                 // Allow: home, end, left, right
                 (e.keyCode >= 35 && e.keyCode <= 39)) {
-                // let it happen, don"t do anything
+                // let it happen, don't do anything
                 return;
             }
             const ch = e.char ? e.char : e.key;
             const regEx = new RegExp(this.regExp);
-            console.log(regEx.test(ch));
             if (regEx.test(ch)) {
                 return;
             } else {
-                event.preventDefault();
+                e.preventDefault();
             }
 
         } else {

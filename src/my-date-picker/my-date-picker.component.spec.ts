@@ -33,7 +33,7 @@ function getElements(id: string): Array<DebugElement> {
 describe("MyDatePicker", () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [MyDatePicker, FocusDirective, InputAutoFillDirective],
+            declarations: [MyDatePicker, FocusDirective, InputAutoFillDirective, JustNumbersDirective],
         });
 
         fixture = TestBed.createComponent(MyDatePicker);
@@ -1990,7 +1990,7 @@ describe("MyDatePicker", () => {
         fixture.detectChanges();
         let headertodaybtn = getElement(".headertodaybtn span:last-child");
         expect(headertodaybtn).not.toBe(null);
-        expect(headertodaybtn.nativeElement.textContent).toBe("Aujourd\"hui");
+        expect(headertodaybtn.nativeElement.textContent).toBe("Aujourd'hui");
 
         fixture.detectChanges();
         let firstDayOfWeek = getElement(".caltable thead tr th:first-child");
