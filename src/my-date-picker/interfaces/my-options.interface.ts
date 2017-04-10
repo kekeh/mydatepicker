@@ -45,5 +45,5 @@ export interface IMyOptions {
     ariaLabelNextMonth?: string;
     ariaLabelPrevYear?: string;
     ariaLabelNextYear?: string;
-    onlyNumbers?: boolean;
+    justNumbers?: boolean;
 }

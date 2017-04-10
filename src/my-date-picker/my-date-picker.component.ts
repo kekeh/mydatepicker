@@ -142,7 +142,7 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
         ariaLabelNextMonth: <string>"Next Month",
         ariaLabelPrevYear: <string>"Previous Year",
         ariaLabelNextYear: <string>"Next Year",
-        onlyNumbers: <boolean>false
+        justNumbers: <boolean>false
     };
 
     onChangeCb: (_: any) => void = () => { };

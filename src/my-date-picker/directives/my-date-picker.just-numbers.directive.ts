@@ -2,17 +2,16 @@ import { Directive, ElementRef, HostListener, Input } from "@angular/core";
 
 @Directive({
     // tslint:disable-next-line:directive-selector
-    selector: "[onlyNumbers]"
+    selector: "[justNumbers]"
 })
-export class OnlyNumbersDirective {
-    @Input() onlyNumbers: boolean;
+export class JustNumbersDirective {
+    @Input() justNumbers: boolean;
 
     regExp: string = "^[0-9]*$";
     constructor(private el: ElementRef) { }
 
     @HostListener("keydown", ["$event"]) onKeyDown(event: any) {
-        console.log("aca", this.onlyNumbers);
-        if (this.onlyNumbers) {
+        if (this.justNumbers) {
             const e = <KeyboardEvent>event;
 
             if ([46, 8, 9, 27, 13, 110, 190].indexOf(e.keyCode) !== -1 ||
