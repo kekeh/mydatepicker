@@ -5,6 +5,7 @@ import { Directive, ElementRef, Renderer, AfterViewInit, Input } from "@angular/
 })
 
 export class FocusDirective implements AfterViewInit {
+    // tslint:disable-next-line:no-input-rename
     @Input("mydpfocus") value: string;
 
     constructor(private el: ElementRef, private renderer: Renderer) { }
