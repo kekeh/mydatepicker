@@ -10,7 +10,7 @@ export class OnlyNumbersDirective {
     regExp: string = '^[0-9]*$';
     constructor(private el: ElementRef) { }
 
-    @HostListener('keydown', ['$event']) onKeyDown(event) {
+    @HostListener('keydown', ['$event']) onKeyDown(event: any) {
         console.log('aca', this.onlyNumbers);
         if (this.onlyNumbers) {
             const e = <KeyboardEvent>event;
@@ -32,10 +32,12 @@ export class OnlyNumbersDirective {
             console.log(regEx.test(ch));
             if (regEx.test(ch)) {
                 return;
-
+            } else {
+                event.preventDefault();
             }
+
         } else {
-            console.log('aca??');
+            return;
         }
 
     }
