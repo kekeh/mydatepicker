@@ -1,13 +1,13 @@
-import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, ElementRef, ViewEncapsulation, ChangeDetectorRef, Renderer, forwardRef } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { IMyDate, IMyDateRange, IMyMonth, IMyCalendarDay, IMyWeek, IMyDayLabels, IMyMonthLabels, IMyOptions, IMyDateModel, IMyInputAutoFill, IMyInputFieldChanged, IMyCalendarViewChanged, IMyInputFocusBlur } from './interfaces/index';
-import { LocaleService } from './services/my-date-picker.locale.service';
-import { UtilService } from './services/my-date-picker.util.service';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, ElementRef, ViewEncapsulation, ChangeDetectorRef, Renderer, forwardRef } from "@angular/core";
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
+import { IMyDate, IMyDateRange, IMyMonth, IMyCalendarDay, IMyWeek, IMyDayLabels, IMyMonthLabels, IMyOptions, IMyDateModel, IMyInputAutoFill, IMyInputFieldChanged, IMyCalendarViewChanged, IMyInputFocusBlur } from "./interfaces/index";
+import { LocaleService } from "./services/my-date-picker.locale.service";
+import { UtilService } from "./services/my-date-picker.util.service";
 
 // webpack1_
 declare var require: any;
-const myDpStyles: string = require('./my-date-picker.component.css');
-const myDpTpl: string = require('./my-date-picker.component.html');
+const myDpStyles: string = require("./my-date-picker.component.css");
+const myDpTpl: string = require("./my-date-picker.component.html");
 // webpack2_
 
 export const MYDP_VALUE_ACCESSOR: any = {
@@ -48,8 +48,8 @@ enum MonthId {
 
 @Component({
     // tslint:disable-next-line:component-selector
-    selector: 'my-date-picker',
-    exportAs: 'mydatepicker',
+    selector: "my-date-picker",
+    exportAs: "mydatepicker",
     styles: [myDpStyles],
     template: myDpTpl,
     providers: [LocaleService, UtilService, MYDP_VALUE_ACCESSOR],
@@ -73,17 +73,17 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
 
 
     showSelector: boolean = false;
-    visibleMonth: IMyMonth = { monthTxt: '', monthNbr: 0, year: 0 };
-    selectedMonth: IMyMonth = { monthTxt: '', monthNbr: 0, year: 0 };
+    visibleMonth: IMyMonth = { monthTxt: "", monthNbr: 0, year: 0 };
+    selectedMonth: IMyMonth = { monthTxt: "", monthNbr: 0, year: 0 };
     selectedDate: IMyDate = { year: 0, month: 0, day: 0 };
     weekDays: Array<string> = [];
     dates: Array<IMyWeek> = [];
-    selectionDayTxt: string = '';
+    selectionDayTxt: string = "";
     invalidDate: boolean = false;
     disableTodayBtn: boolean = false;
     dayIdx: number = 0;
-    weekDayOpts: Array<string> = ['su', 'mo', 'tu', 'we', 'th', 'fr', 'sa'];
-    autoFillOpts: IMyInputAutoFill = { separator: '', formatParts: [], enabled: true };
+    weekDayOpts: Array<string> = ["su", "mo", "tu", "we", "th", "fr", "sa"];
+    autoFillOpts: IMyInputAutoFill = { separator: "", formatParts: [], enabled: true };
 
     editMonth: boolean = false;
     invalidMonth: boolean = false;
@@ -103,10 +103,10 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
     opts: IMyOptions = {
         dayLabels: <IMyDayLabels>{},
         monthLabels: <IMyMonthLabels>{},
-        dateFormat: <string>'',
+        dateFormat: <string>"",
         showTodayBtn: <boolean>true,
-        todayBtnTxt: <string>'',
-        firstDayOfWeek: <string>'',
+        todayBtnTxt: <string>"",
+        firstDayOfWeek: <string>"",
         sunHighlight: <boolean>true,
         markCurrentDay: <boolean>true,
         disableUntil: <IMyDate>{ year: 0, month: 0, day: 0 },
@@ -116,9 +116,9 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
         disableDateRanges: <Array<IMyDateRange>>[],
         disableWeekends: <boolean>false,
         showWeekNumbers: <boolean>false,
-        height: <string>'34px',
-        width: <string>'100%',
-        selectionTxtFontSize: <string>'18px',
+        height: <string>"34px",
+        width: <string>"100%",
+        selectionTxtFontSize: <string>"18px",
         inline: <boolean>false,
         showClearDateBtn: <boolean>true,
         alignSelectorRight: <boolean>false,
@@ -135,13 +135,13 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
         showInputField: <boolean>true,
         openSelectorOnInputClick: <boolean>false,
         inputAutoFill: <boolean>true,
-        ariaLabelInputField: <string>'Date input field',
-        ariaLabelClearDate: <string>'Clear Date',
-        ariaLabelOpenCalendar: <string>'Open Calendar',
-        ariaLabelPrevMonth: <string>'Previous Month',
-        ariaLabelNextMonth: <string>'Next Month',
-        ariaLabelPrevYear: <string>'Previous Year',
-        ariaLabelNextYear: <string>'Next Year',
+        ariaLabelInputField: <string>"Date input field",
+        ariaLabelClearDate: <string>"Clear Date",
+        ariaLabelOpenCalendar: <string>"Open Calendar",
+        ariaLabelPrevMonth: <string>"Previous Month",
+        ariaLabelNextMonth: <string>"Next Month",
+        ariaLabelPrevYear: <string>"Previous Year",
+        ariaLabelNextYear: <string>"Next Year",
         onlyNumbers: <boolean>false
     };
 
@@ -155,7 +155,7 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
         private localeService: LocaleService,
         private utilService: UtilService) {
         this.setLocaleOptions();
-        renderer.listenGlobal('document', 'click', (event: any) => {
+        renderer.listenGlobal("document", "click", (event: any) => {
             if (this.showSelector && event.target &&
                 this.elem.nativeElement !== event.target &&
                 !this.elem.nativeElement.contains(event.target)) {
@@ -196,15 +196,15 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
         if (this.opts.showInputField) {
             return this.opts.width;
         } else if (this.selectionDayTxt.length > 0 && this.opts.showClearDateBtn) {
-            return '60px';
+            return "60px";
         } else {
-            return '30px';
+            return "30px";
         }
     }
 
     getSelectorTopPosition(): string {
         if (this.opts.openSelectorTopOfInput) {
-            return this.elem.nativeElement.children[0].offsetHeight + 'px';
+            return this.elem.nativeElement.children[0].offsetHeight + "px";
         }
     }
 
@@ -260,7 +260,7 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
                 dateFormat: this.opts.dateFormat,
                 valid: !(event.target.value.length === 0 || this.invalidDate)
             });
-            this.onChangeCb('');
+            this.onChangeCb("");
             this.onTouchedCb();
         }
     }
@@ -339,15 +339,15 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
             let idx: number = this.dayIdx;
             for (let i = 0; i < this.weekDayOpts.length; i++) {
                 this.weekDays.push(this.opts.dayLabels[this.weekDayOpts[idx]]);
-                idx = this.weekDayOpts[idx] === 'sa' ? 0 : idx + 1;
+                idx = this.weekDayOpts[idx] === "sa" ? 0 : idx + 1;
             }
         }
     }
 
     writeValue(value: Object): void {
-        if (value && value['date']) {
-            this.updateDateValue(this.parseSelectedDate(value['date']), false);
-        } else if (value === '') {
+        if (value && value["date"]) {
+            this.updateDateValue(this.parseSelectedDate(value["date"]), false);
+        } else if (value === "") {
             this.updateDateValue({ year: 0, month: 0, day: 0 }, true);
         }
     }
@@ -361,40 +361,40 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
     }
 
     ngOnChanges(changes: SimpleChanges): void {
-        if (changes.hasOwnProperty('selector') && changes['selector'].currentValue > 0) {
+        if (changes.hasOwnProperty("selector") && changes["selector"].currentValue > 0) {
             this.openBtnClicked();
         }
 
-        if (changes.hasOwnProperty('placeholder')) {
-            this.placeholder = changes['placeholder'].currentValue;
+        if (changes.hasOwnProperty("placeholder")) {
+            this.placeholder = changes["placeholder"].currentValue;
         }
 
-        if (changes.hasOwnProperty('locale')) {
-            this.locale = changes['locale'].currentValue;
+        if (changes.hasOwnProperty("locale")) {
+            this.locale = changes["locale"].currentValue;
         }
 
-        if (changes.hasOwnProperty('options')) {
-            this.options = changes['options'].currentValue;
+        if (changes.hasOwnProperty("options")) {
+            this.options = changes["options"].currentValue;
         }
 
         this.weekDays.length = 0;
         this.parseOptions();
 
-        if (changes.hasOwnProperty('defaultMonth')) {
-            const dm: string = changes['defaultMonth'].currentValue;
-            if (dm !== null && dm !== undefined && dm !== '') {
+        if (changes.hasOwnProperty("defaultMonth")) {
+            const dm: string = changes["defaultMonth"].currentValue;
+            if (dm !== null && dm !== undefined && dm !== "") {
                 this.selectedMonth = this.parseSelectedMonth(dm);
             }
             else {
-                this.selectedMonth = { monthTxt: '', monthNbr: 0, year: 0 };
+                this.selectedMonth = { monthTxt: "", monthNbr: 0, year: 0 };
             }
         }
 
-        if (changes.hasOwnProperty('selDate')) {
-            const sd: any = changes['selDate'];
+        if (changes.hasOwnProperty("selDate")) {
+            const sd: any = changes["selDate"];
             if (sd.currentValue !== null &&
                 sd.currentValue !== undefined &&
-                sd.currentValue !== '' &&
+                sd.currentValue !== "" &&
                 Object.keys(sd.currentValue).length !== 0) {
                 this.selectedDate = this.parseSelectedDate(sd.currentValue);
                 setTimeout(() => {
@@ -534,8 +534,8 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
     clearDate(): void {
         // Clears the date and notifies parent using callbacks and value accessor
         const date: IMyDate = { year: 0, month: 0, day: 0 };
-        this.dateChanged.emit({ date: date, jsdate: null, formatted: '', epoc: 0 });
-        this.onChangeCb('');
+        this.dateChanged.emit({ date: date, jsdate: null, formatted: "", epoc: 0 });
+        this.onChangeCb("");
         this.onTouchedCb();
         this.updateDateValue(date, true);
     }
@@ -556,7 +556,7 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
     updateDateValue(date: IMyDate, clear: boolean): void {
         // Updates date values
         this.selectedDate = date;
-        this.selectionDayTxt = clear ? '' : this.formatDate(date);
+        this.selectionDayTxt = clear ? "" : this.formatDate(date);
         this.inputFieldChanged.emit({ value: this.selectionDayTxt, dateFormat: this.opts.dateFormat, valid: !clear });
         this.invalidDate = false;
     }
@@ -574,14 +574,14 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
     preZero(val: string): string {
         // Prepend zero if smaller than 10
         // tslint:disable-next-line:radix
-        return parseInt(val) < 10 ? '0' + val : val;
+        return parseInt(val) < 10 ? "0" + val : val;
     }
 
     formatDate(val: any): string {
         // Returns formatted date string, if mmm is part of dateFormat returns month as a string
-        const formatted: string = this.opts.dateFormat.replace('yyyy', val.year).replace('dd', this.preZero(val.day));
-        return this.opts.dateFormat.indexOf('mmm') !== -1 ?
-            formatted.replace('mmm', this.monthText(val.month)) : formatted.replace('mm', this.preZero(val.month));
+        const formatted: string = this.opts.dateFormat.replace("yyyy", val.year).replace("dd", this.preZero(val.day));
+        return this.opts.dateFormat.indexOf("mmm") !== -1 ?
+            formatted.replace("mmm", this.monthText(val.month)) : formatted.replace("mm", this.preZero(val.month));
     }
 
     monthText(m: number): string {
@@ -726,7 +726,7 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
                     dayNbr++;
                 }
             }
-            const weekNbr: number = this.opts.showWeekNumbers && this.opts.firstDayOfWeek === 'mo' ?
+            const weekNbr: number = this.opts.showWeekNumbers && this.opts.firstDayOfWeek === "mo" ?
                 this.utilService.getWeekNumber(week[0].dateObj) : 0;
             this.dates.push({ week: week, weekNbr: weekNbr });
         }
@@ -747,16 +747,16 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
     parseSelectedDate(selDate: any): IMyDate {
         // Parse selDate value - it can be string or IMyDate object
         let date: IMyDate = { day: 0, month: 0, year: 0 };
-        if (typeof selDate === 'string') {
+        if (typeof selDate === "string") {
             const sd: string = <string>selDate;
-            date.day = this.utilService.parseDatePartNumber(this.opts.dateFormat, sd, 'dd');
+            date.day = this.utilService.parseDatePartNumber(this.opts.dateFormat, sd, "dd");
 
-            date.month = this.opts.dateFormat.indexOf('mmm') !== -1
-                ? this.utilService.parseDatePartMonthName(this.opts.dateFormat, sd, 'mmm', this.opts.monthLabels)
-                : this.utilService.parseDatePartNumber(this.opts.dateFormat, sd, 'mm');
+            date.month = this.opts.dateFormat.indexOf("mmm") !== -1
+                ? this.utilService.parseDatePartMonthName(this.opts.dateFormat, sd, "mmm", this.opts.monthLabels)
+                : this.utilService.parseDatePartNumber(this.opts.dateFormat, sd, "mm");
 
-            date.year = this.utilService.parseDatePartNumber(this.opts.dateFormat, sd, 'yyyy');
-        } else if (typeof selDate === 'object') {
+            date.year = this.utilService.parseDatePartNumber(this.opts.dateFormat, sd, "yyyy");
+        } else if (typeof selDate === "object") {
             date = selDate;
         }
         this.selectionDayTxt = this.formatDate(date);

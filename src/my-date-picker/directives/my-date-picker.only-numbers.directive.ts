@@ -1,17 +1,17 @@
-import { Directive, ElementRef, HostListener, Input } from '@angular/core';
+import { Directive, ElementRef, HostListener, Input } from "@angular/core";
 
 @Directive({
     // tslint:disable-next-line:directive-selector
-    selector: '[onlyNumbers]'
+    selector: "[onlyNumbers]"
 })
 export class OnlyNumbersDirective {
     @Input() onlyNumbers: boolean;
 
-    regExp: string = '^[0-9]*$';
+    regExp: string = "^[0-9]*$";
     constructor(private el: ElementRef) { }
 
-    @HostListener('keydown', ['$event']) onKeyDown(event: any) {
-        console.log('aca', this.onlyNumbers);
+    @HostListener("keydown", ["$event"]) onKeyDown(event: any) {
+        console.log("aca", this.onlyNumbers);
         if (this.onlyNumbers) {
             const e = <KeyboardEvent>event;
 
@@ -24,7 +24,7 @@ export class OnlyNumbersDirective {
                 (e.keyCode === 88 && e.ctrlKey === true) ||
                 // Allow: home, end, left, right
                 (e.keyCode >= 35 && e.keyCode <= 39)) {
-                // let it happen, don't do anything
+                // let it happen, don"t do anything
                 return;
             }
             const ch = e.char ? e.char : e.key;
