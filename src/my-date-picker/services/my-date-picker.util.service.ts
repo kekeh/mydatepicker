@@ -15,12 +15,12 @@ const YYYY = "yyyy";
 @Injectable()
 export class UtilService {
     isDateValid(dateStr: string, dateFormat: string, minYear: number, maxYear: number, disableUntil: IMyDate, disableSince: IMyDate, disableWeekends: boolean, disableDays: Array<IMyDate>, disableDateRanges: Array<IMyDateRange>, monthLabels: IMyMonthLabels, enableDays: Array<IMyDate>): IMyDate {
-        // added this code to add extra  0 for single digit month or day only please refactore if needed.
-        let dateValue = dateStr.split( "/" );
+
+        let dateValue = dateStr.split("/");
         dateValue[0] = dateValue[0].length < 2 ? "0" + dateValue[0] :  dateValue[0];
-        dateValue[1] = dateValue[0].length < 2 ? "0" + dateValue[0] :  dateValue[0];
+        dateValue[1] = dateValue[1].length < 2 ? "0" + dateValue[1] :  dateValue[1];
         dateStr = dateValue[0] + "/" + dateValue[1] + "/" + dateValue[2];
-        // code end
+
         let returnDate: IMyDate = {day: 0, month: 0, year: 0};
         let daysInMonth: Array<number> = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
         let isMonthStr: boolean = dateFormat.indexOf(MMM) !== -1;
