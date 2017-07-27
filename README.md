@@ -1,3 +1,6 @@
+# Author - kekeh: https://github.com/kekeh/mydatepicker.git
+I've just changes years disabling approach - yearSelector shows respetive year enabled if at leat one date is not disbaled there. 
+
 # mydatepicker
 
 **Angular date picker**
