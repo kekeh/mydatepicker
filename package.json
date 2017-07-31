@@ -1,7 +1,7 @@
 {
-  "name": "mydatepicker",
-  "version": "2.0.26",
-  "description": "Angular date picker",
+  "name": "mydatepicker-custom-ver",
+  "version": "1.0.2",
+  "description": "Angular date picker - disabled year changed functinality",
   "keywords": [
     "Angular2",
     "Angular4",
@@ -11,7 +11,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/kekeh/mydatepicker.git"
+    "url": "https://github.com/kievsash/mydatepicker.git"
   },
   "scripts": {
     "start": "webpack-dev-server --config config/webpack.dev.js --progress",
