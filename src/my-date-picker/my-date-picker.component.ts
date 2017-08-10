@@ -291,11 +291,9 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor {
                 this.invalidDate = true;
             }
         }
-        if (this.invalidDate) {
-            this.inputFieldChanged.emit({value: value, dateFormat: this.opts.dateFormat, valid: !(value.length === 0 || this.invalidDate)});
-            this.onChangeCb(null);
-            this.onTouchedCb();
-        }
+        this.inputFieldChanged.emit({value: value, dateFormat: this.opts.dateFormat, valid: !(value.length === 0 || this.invalidDate)});
+        this.onChangeCb(null);
+        this.onTouchedCb();
     }
 
     onFocusInput(event: any): void {
