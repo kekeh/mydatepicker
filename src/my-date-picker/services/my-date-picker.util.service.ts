@@ -10,6 +10,7 @@ import { IMyDateFormat } from "../interfaces/my-date-format.interface";
 const M = "m";
 const MM = "mm";
 const MMM = "mmm";
+const W = "w";
 const D = "d";
 const DD = "dd";
 const YYYY = "yyyy";
@@ -138,6 +139,12 @@ export class UtilService {
         else {
             formatted = formatted.replace(D, String(date.day));
         }
+
+        if (dateFormat.indexOf(W) !== -1) {
+            formatted = formatted.replace(W, String(this.getWeekNumber(date)));
+        }
+
+        
         return formatted;
     }
 
