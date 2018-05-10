@@ -278,7 +278,7 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor, OnDestroy 
             let date: IMyDate = this.utilService.isDateValid(value, this.opts.dateFormat, this.opts.minYear, this.opts.maxYear, this.opts.disableUntil, this.opts.disableSince, this.opts.disableWeekends, this.opts.disableWeekdays, this.opts.disableDays, this.opts.disableDateRanges, this.opts.monthLabels, this.opts.enableDays);
             if (this.utilService.isInitializedDate(date)) {
                 if (!this.utilService.isSameDate(date, this.selectedDate)) {
-                    this.selectDate(date, CalToggle.CloseByDateSel);
+                    this.selectDate(date, CalToggle.CloseByDateSel, false);
                 }
                 else {
                     this.updateDateValue(date);
@@ -295,7 +295,7 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor, OnDestroy 
     }
 
     onBlurInput(event: any): void {
-        this.selectionDayTxt = event.target.value;
+        this.updateDateValue(this.selectedDate);
         this.onTouchedCb();
         this.inputFocusBlur.emit({reason: InputFocusBlur.blur, value: event.target.value});
     }
@@ -618,8 +618,8 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor, OnDestroy 
         this.selectDate(date, CalToggle.CloseByCalBtn);
     }
 
-    selectDate(date: IMyDate, closeReason: number): void {
-        this.updateDateValue(date);
+    selectDate(date: IMyDate, closeReason: number, updateSelectionDayTxt = true): void {
+        this.updateDateValue(date, updateSelectionDayTxt);
         if (this.showSelector) {
             this.calendarToggle.emit(closeReason);
         }
@@ -635,15 +635,17 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor, OnDestroy 
         }
     }
 
-    updateDateValue(date: IMyDate): void {
+    updateDateValue(date: IMyDate, updateSelectionDayTxt = true): void {
         let clear: boolean = !this.utilService.isInitializedDate(date);
 
         this.selectedDate = date;
         this.emitDateChanged(date);
 
         if (!this.opts.inline) {
-            this.selectionDayTxt = clear ? "" : this.utilService.formatDate(date, this.opts.dateFormat, this.opts.monthLabels);
-            this.inputFieldChanged.emit({value: this.selectionDayTxt, dateFormat: this.opts.dateFormat, valid: !clear});
+            if (updateSelectionDayTxt || clear) {
+                this.selectionDayTxt = clear ? "" : this.utilService.formatDate(date, this.opts.dateFormat, this.opts.monthLabels);
+                this.inputFieldChanged.emit({value: this.selectionDayTxt, dateFormat: this.opts.dateFormat, valid: !clear});
+            }
             this.invalidDate = false;
         }
     }
