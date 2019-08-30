@@ -5,9 +5,9 @@ import { LocaleService } from "./services/my-date-picker.locale.service";
 import { UtilService } from "./services/my-date-picker.util.service";
 
 // webpack1_
-declare var require: any;
+// declare var require: any;
 const myDpStyles: string = require("./my-date-picker.component.css");
-const myDpTpl: string = require("./my-date-picker.component.html");
+// const myDpTpl: string = require("./my-date-picker.component.html");
 // webpack2_
 
 export const MYDP_VALUE_ACCESSOR: any = {
@@ -27,8 +27,8 @@ const MMM = "mmm";
 @Component({
     selector: "my-date-picker",
     exportAs: "mydatepicker",
-    styles: [myDpStyles],
-    template: myDpTpl,
+    styleUrls: ["./my-date-picker.component.css"],
+    templateUrl: "./my-date-picker.component.html",
     providers: [LocaleService, UtilService, MYDP_VALUE_ACCESSOR],
     encapsulation: ViewEncapsulation.None
 })
@@ -62,6 +62,7 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor, OnDestroy 
     months: Array<Array<IMyCalendarMonth>> = [];
     years: Array<Array<IMyCalendarYear>> = [];
     selectionDayTxt: string = "";
+    localeSelectionDayTxt = "";
     invalidDate: boolean = false;
     disableTodayBtn: boolean = false;
     dayIdx: number = 0;
@@ -212,7 +213,39 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor, OnDestroy 
             this.onMonthCellClicked(cell);
         }
     }
+    getlocaleDate(number) {
+        var localeChar = "";
+        if (typeof this.opts.numberLabels !== "undefined") {
+            var _this = this;
+            var temp = number.toString();
 
+            for (var i = 0; i < temp.length; i++) {
+                if (temp[i] === '-' || temp[i] === '/') {
+                    localeChar = localeChar + temp[i];
+                } else {
+                    localeChar = localeChar + this.opts.numberLabels[parseInt(temp[i])];
+                }
+
+            }
+        } else {
+            localeChar = number;
+        }
+        return localeChar;
+    }
+    getlocaleNumber(number) {
+        var localeChar = "";
+        if (typeof this.opts.numberLabels !== "undefined") {
+            var _this = this;
+            var temp = number.toString();
+
+            for (var i = 0; i < temp.length; i++) {
+                localeChar = localeChar + this.opts.numberLabels[parseInt(temp[i])];
+            }
+        } else {
+            localeChar = number;
+        }
+        return localeChar;
+    }
     onSelectYearClicked(event: any): void {
         event.stopPropagation();
         this.selectYear = !this.selectYear;
@@ -257,7 +290,8 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor, OnDestroy 
                 let disabled: boolean = this.utilService.isMonthDisabledByDisableUntil({year: j, month: this.visibleMonth.monthNbr, day: this.daysInMonth(this.visibleMonth.monthNbr, j)}, this.opts.disableUntil)
                  || this.utilService.isMonthDisabledByDisableSince({year: j, month: this.visibleMonth.monthNbr, day: 1}, this.opts.disableSince);
                 let minMax: boolean = j < this.opts.minYear || j > this.opts.maxYear;
-                row.push({year: j, currYear: j === today.year, selected: j === this.visibleMonth.year, disabled: disabled || minMax});
+                // row.push({year: j, currYear: j === today.year, selected: j === this.visibleMonth.year, disabled: disabled || minMax});
+                row.push({ year: j, currYear: j === today.year, selected: j === this.visibleMonth.year, disabled: disabled || minMax, disYear: this.getlocaleNumber(j) });
             }
             this.years.push(row);
         }
@@ -349,7 +383,9 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor, OnDestroy 
             this.selectedDate = {year: 0, month: 0, day: 0};
             this.selectionDayTxt = "";
         }
-        this.inputFieldChanged.emit({value: this.selectionDayTxt, dateFormat: this.opts.dateFormat, valid: this.selectionDayTxt.length > 0});
+        //this.inputFieldChanged.emit({value: this.selectionDayTxt, dateFormat: this.opts.dateFormat, valid: this.selectionDayTxt.length > 0});
+        this.localeSelectionDayTxt = this.getlocaleDate(this.selectionDayTxt);
+        this.inputFieldChanged.emit({ value: this.localeSelectionDayTxt, dateFormat: this.opts.dateFormat, valid: this.selectionDayTxt.length > 0 });
         this.invalidDate = false;
     }
 
@@ -643,7 +679,9 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor, OnDestroy 
 
         if (!this.opts.inline) {
             this.selectionDayTxt = clear ? "" : this.utilService.formatDate(date, this.opts.dateFormat, this.opts.monthLabels);
-            this.inputFieldChanged.emit({value: this.selectionDayTxt, dateFormat: this.opts.dateFormat, valid: !clear});
+            //this.inputFieldChanged.emit({value: this.selectionDayTxt, dateFormat: this.opts.dateFormat, valid: !clear});
+            this.localeSelectionDayTxt = this.getlocaleDate(this.selectionDayTxt);
+            this.inputFieldChanged.emit({ value: this.localeSelectionDayTxt, dateFormat: this.opts.dateFormat, valid: !clear });
             this.invalidDate = false;
         }
     }
@@ -804,6 +842,7 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor, OnDestroy 
             date = selDate;
         }
         this.selectionDayTxt = this.utilService.formatDate(date, this.opts.dateFormat, this.opts.monthLabels);
+        this.localeSelectionDayTxt = this.getlocaleDate(this.selectionDayTxt);
         return date;
     }
 

@@ -1,4 +1,4 @@
-///<reference path="../../node_modules/@types/jasmine/index.d.ts"/>
+//<reference path="../../node_modules/@types/jasmine/index.d.ts"/>
 
 import {FormsModule} from "@angular/forms";
 import {ComponentFixture, TestBed} from '@angular/core/testing';

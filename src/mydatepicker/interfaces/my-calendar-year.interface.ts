@@ -3,4 +3,5 @@ export interface IMyCalendarYear {
     currYear: boolean;
     selected: boolean;
     disabled: boolean;
+    disYear:string;
 }

@@ -4,8 +4,10 @@ import { IMyDate } from "./my-date.interface";
 import { IMyDateRange } from "./my-date-range.interface";
 import { IMyMarkedDates } from "./my-marked-dates.interface";
 import { IMyMarkedDate } from "./my-marked-date.interface";
+import { IMyNumberLabels } from "./my-number-labels.interface";
 
 export interface IMyOptions {
+    numberLabels?:IMyNumberLabels;
     dayLabels?: IMyDayLabels;
     monthLabels?: IMyMonthLabels;
     dateFormat?: string;
