@@ -226,6 +226,10 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor, OnDestroy 
     onYearCellClicked(cell: IMyCalendarYear): void {
         let yc: boolean = cell.year !== this.visibleMonth.year;
         this.visibleMonth = {monthTxt: this.visibleMonth.monthTxt, monthNbr: this.visibleMonth.monthNbr, year: cell.year};
+
+        this.setPossibleEnabledMonth(this.opts.disableUntil, 1);
+        this.setPossibleEnabledMonth(this.opts.disableSince, -1);
+
         this.generateCalendar(this.visibleMonth.monthNbr, cell.year, yc);
         this.selectYear = false;
         this.selectorEl.nativeElement.focus();
