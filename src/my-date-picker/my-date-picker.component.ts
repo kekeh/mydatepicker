@@ -213,14 +213,14 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor, OnDestroy 
             this.onMonthCellClicked(cell);
         }
     }
-    getlocaleDate(number:any) {
-        var localeChar = "";
+    getlocaleDate(numberValue:any) {
+        let localeChar = "";
         if (typeof this.opts.numberLabels !== "undefined") {
-            var _this = this;
-            var temp = number.toString();
+            let _this = this;
+            let temp = numberValue.toString();
 
-            for (var i = 0; i < temp.length; i++) {
-                if (temp[i] === '-' || temp[i] === '/') {
+            for (let i = 0; i < temp.length; i++) {
+                if (temp[i] === "-" || temp[i] === "/") {
                     localeChar = localeChar + temp[i];
                 } else {
                     localeChar = localeChar + this.opts.numberLabels[parseInt(temp[i])];
@@ -228,21 +228,21 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor, OnDestroy 
 
             }
         } else {
-            localeChar = number;
+            localeChar = numberValue;
         }
         return localeChar;
     }
-    getlocaleNumber(number:any) {
-        var localeChar = "";
+    getlocaleNumber(numberValue:any) {
+        let localeChar = "";
         if (typeof this.opts.numberLabels !== "undefined") {
-            var _this = this;
-            var temp = number.toString();
+            let _this = this;
+            let temp = numberValue.toString();
 
-            for (var i = 0; i < temp.length; i++) {
+            for (let i = 0; i < temp.length; i++) {
                 localeChar = localeChar + this.opts.numberLabels[parseInt(temp[i])];
             }
         } else {
-            localeChar = number;
+            localeChar = numberValue;
         }
         return localeChar;
     }
@@ -289,7 +289,7 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor, OnDestroy 
             for (let j = i; j < i + 5; j++) {
                 let disabled: boolean = this.utilService.isMonthDisabledByDisableUntil({year: j, month: this.visibleMonth.monthNbr, day: this.daysInMonth(this.visibleMonth.monthNbr, j)}, this.opts.disableUntil)
                  || this.utilService.isMonthDisabledByDisableSince({year: j, month: this.visibleMonth.monthNbr, day: 1}, this.opts.disableSince);
-                let minMax: boolean = j < this.opts.minYear || j > this.opts.maxYear;                
+                let minMax: boolean = j < this.opts.minYear || j > this.opts.maxYear;
                 row.push({ year: j, currYear: j === today.year, selected: j === this.visibleMonth.year, disabled: disabled || minMax, disYear: this.getlocaleNumber(j) });
             }
             this.years.push(row);
@@ -676,8 +676,7 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor, OnDestroy 
         this.emitDateChanged(date);
 
         if (!this.opts.inline) {
-            this.selectionDayTxt = clear ? "" : this.utilService.formatDate(date, this.opts.dateFormat, this.opts.monthLabels);
-            
+            this.selectionDayTxt = clear ? "" : this.utilService.formatDate(date, this.opts.dateFormat, this.opts.monthLabels);          
             this.localeSelectionDayTxt = this.getlocaleDate(this.selectionDayTxt);
             this.inputFieldChanged.emit({ value: this.localeSelectionDayTxt, dateFormat: this.opts.dateFormat, valid: !clear });
             this.invalidDate = false;
