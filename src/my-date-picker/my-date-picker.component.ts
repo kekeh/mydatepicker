@@ -62,7 +62,7 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor, OnDestroy 
     months: Array<Array<IMyCalendarMonth>> = [];
     years: Array<Array<IMyCalendarYear>> = [];
     selectionDayTxt: string = "";
-    localeSelectionDayTxt = "";
+    localeSelectionDayTxt: string = "";
     invalidDate: boolean = false;
     disableTodayBtn: boolean = false;
     dayIdx: number = 0;
@@ -289,8 +289,7 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor, OnDestroy 
             for (let j = i; j < i + 5; j++) {
                 let disabled: boolean = this.utilService.isMonthDisabledByDisableUntil({year: j, month: this.visibleMonth.monthNbr, day: this.daysInMonth(this.visibleMonth.monthNbr, j)}, this.opts.disableUntil)
                  || this.utilService.isMonthDisabledByDisableSince({year: j, month: this.visibleMonth.monthNbr, day: 1}, this.opts.disableSince);
-                let minMax: boolean = j < this.opts.minYear || j > this.opts.maxYear;
-                // row.push({year: j, currYear: j === today.year, selected: j === this.visibleMonth.year, disabled: disabled || minMax});
+                let minMax: boolean = j < this.opts.minYear || j > this.opts.maxYear;                
                 row.push({ year: j, currYear: j === today.year, selected: j === this.visibleMonth.year, disabled: disabled || minMax, disYear: this.getlocaleNumber(j) });
             }
             this.years.push(row);
@@ -383,8 +382,8 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor, OnDestroy 
             this.selectedDate = {year: 0, month: 0, day: 0};
             this.selectionDayTxt = "";
         }
-        //this.inputFieldChanged.emit({value: this.selectionDayTxt, dateFormat: this.opts.dateFormat, valid: this.selectionDayTxt.length > 0});
-        this.localeSelectionDayTxt = this.getlocaleDate(this.selectionDayTxt);
+        this.
+            = this.getlocaleDate(this.selectionDayTxt);
         this.inputFieldChanged.emit({ value: this.localeSelectionDayTxt, dateFormat: this.opts.dateFormat, valid: this.selectionDayTxt.length > 0 });
         this.invalidDate = false;
     }
@@ -679,7 +678,7 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor, OnDestroy 
 
         if (!this.opts.inline) {
             this.selectionDayTxt = clear ? "" : this.utilService.formatDate(date, this.opts.dateFormat, this.opts.monthLabels);
-            //this.inputFieldChanged.emit({value: this.selectionDayTxt, dateFormat: this.opts.dateFormat, valid: !clear});
+            
             this.localeSelectionDayTxt = this.getlocaleDate(this.selectionDayTxt);
             this.inputFieldChanged.emit({ value: this.localeSelectionDayTxt, dateFormat: this.opts.dateFormat, valid: !clear });
             this.invalidDate = false;
