@@ -1,4 +1,3 @@
-export interface IMyDateFormat {
-    value: string;
-    format: string;
+export interface IMyDefaultMonth {
+    defMonth: string;
 }

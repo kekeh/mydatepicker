@@ -213,7 +213,7 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor, OnDestroy 
             this.onMonthCellClicked(cell);
         }
     }
-    getlocaleDate(number) {
+    getlocaleDate(number:any) {
         var localeChar = "";
         if (typeof this.opts.numberLabels !== "undefined") {
             var _this = this;

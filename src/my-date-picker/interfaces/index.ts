@@ -18,10 +18,4 @@ export * from "./my-marked-date.interface";
 export * from "./my-marked-dates.interface";
 export * from "./my-default-month.interface";
 export * from "./my-selector.interface";
-export * from "./my-date-format.interface";export interface IMyCalendarMonth {
-    nbr: number;
-    name: string;
-    currMonth: boolean;
-    selected: boolean;
-    disabled: boolean;
-}
+export * from "./my-date-format.interface";
