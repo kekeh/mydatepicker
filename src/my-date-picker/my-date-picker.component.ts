@@ -5,9 +5,9 @@ import { LocaleService } from "./services/my-date-picker.locale.service";
 import { UtilService } from "./services/my-date-picker.util.service";
 
 // webpack1_
-// declare var require: any;
+declare var require: any;
 const myDpStyles: string = require("./my-date-picker.component.css");
-// const myDpTpl: string = require("./my-date-picker.component.html");
+const myDpTpl: string = require("./my-date-picker.component.html");
 // webpack2_
 
 export const MYDP_VALUE_ACCESSOR: any = {
@@ -27,8 +27,8 @@ const MMM = "mmm";
 @Component({
     selector: "my-date-picker",
     exportAs: "mydatepicker",
-    styleUrls: ["./my-date-picker.component.css"],
-    templateUrl: "./my-date-picker.component.html",
+    styles: [myDpStyles],
+    template: myDpTpl,    
     providers: [LocaleService, UtilService, MYDP_VALUE_ACCESSOR],
     encapsulation: ViewEncapsulation.None
 })
@@ -213,39 +213,7 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor, OnDestroy 
             this.onMonthCellClicked(cell);
         }
     }
-    getlocaleDate(numberValue:any) {
-        let localeChar = "";
-        if (typeof this.opts.numberLabels !== "undefined") {
-            let _this = this;
-            let temp = numberValue.toString();
-
-            for (let i = 0; i < temp.length; i++) {
-                if (temp[i] === "-" || temp[i] === "/") {
-                    localeChar = localeChar + temp[i];
-                } else {
-                    localeChar = localeChar + this.opts.numberLabels[parseInt(temp[i])];
-                }
-
-            }
-        } else {
-            localeChar = numberValue;
-        }
-        return localeChar;
-    }
-    getlocaleNumber(numberValue:any) {
-        let localeChar = "";
-        if (typeof this.opts.numberLabels !== "undefined") {
-            let _this = this;
-            let temp = numberValue.toString();
-
-            for (let i = 0; i < temp.length; i++) {
-                localeChar = localeChar + this.opts.numberLabels[parseInt(temp[i])];
-            }
-        } else {
-            localeChar = numberValue;
-        }
-        return localeChar;
-    }
+    
     onSelectYearClicked(event: any): void {
         event.stopPropagation();
         this.selectYear = !this.selectYear;
@@ -873,5 +841,40 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor, OnDestroy 
         if (this.globalListener) {
             this.globalListener();
         }
+    }
+    
+    getlocaleDate(numberValue:any) {
+        let localeChar = "";
+        if (typeof this.opts.numberLabels !== "undefined") {
+            let _this = this;
+            let temp = numberValue.toString();
+
+            for (let i = 0; i < temp.length; i++) {
+                if (temp[i] === "-" || temp[i] === "/") {
+                    localeChar = localeChar + temp[i];
+                } else {
+                    localeChar = localeChar + this.opts.numberLabels[parseInt(temp[i])];
+                }
+
+            }
+        } else {
+            localeChar = numberValue;
+        }
+        return localeChar;
+    }
+    
+    getlocaleNumber(numberValue:any) {
+        let localeChar = "";
+        if (typeof this.opts.numberLabels !== "undefined") {
+            let _this = this;
+            let temp = numberValue.toString();
+
+            for (let i = 0; i < temp.length; i++) {
+                localeChar = localeChar + this.opts.numberLabels[parseInt(temp[i])];
+            }
+        } else {
+            localeChar = numberValue;
+        }
+        return localeChar;
     }
 }
