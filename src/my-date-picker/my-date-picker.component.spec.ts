@@ -48,7 +48,7 @@ describe('MyDatePicker', () => {
     });
 
     it('set valid date', () => {
-        comp.selectionDayTxt = '2016-08-22';
+        comp.localeSelectionDayTxt = '2016-08-22';
         fixture.detectChanges();
         let selection = getElement('.selection');
         expect(selection.nativeElement.value).toContain('2016-08-22');
