@@ -1,4 +1,4 @@
 export interface IMyDateFormat {
-  value: string;
-  format: string;
+    value: string;
+    format: string;
 }
