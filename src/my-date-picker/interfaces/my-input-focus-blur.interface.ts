@@ -1,4 +1,4 @@
 export interface IMyInputFocusBlur {
-  reason: number;
-  value: string;
+    reason: number;
+    value: string;
 }
