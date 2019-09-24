@@ -232,7 +232,7 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor, OnDestroy 
         }
         return localeChar;
     }
-    getlocaleNumber(number) {
+    getlocaleNumber(number:any) {
         var localeChar = "";
         if (typeof this.opts.numberLabels !== "undefined") {
             var _this = this;
