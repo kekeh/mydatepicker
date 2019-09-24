@@ -1,4 +1,4 @@
 export interface IMyWeekday {
-  number: number;
-  weekday: string;
+    number: number;
+    weekday: string;
 }
