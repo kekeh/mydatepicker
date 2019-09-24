@@ -382,8 +382,7 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor, OnDestroy 
             this.selectedDate = {year: 0, month: 0, day: 0};
             this.selectionDayTxt = "";
         }
-        this.
-            = this.getlocaleDate(this.selectionDayTxt);
+        this.localeSelectionDayTxt = this.getlocaleDate(this.selectionDayTxt);
         this.inputFieldChanged.emit({ value: this.localeSelectionDayTxt, dateFormat: this.opts.dateFormat, valid: this.selectionDayTxt.length > 0 });
         this.invalidDate = false;
     }
