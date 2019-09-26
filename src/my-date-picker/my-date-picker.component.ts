@@ -28,7 +28,7 @@ const MMM = "mmm";
     selector: "my-date-picker",
     exportAs: "mydatepicker",
     styles: [myDpStyles],
-    template: myDpTpl,    
+    template: myDpTpl,
     providers: [LocaleService, UtilService, MYDP_VALUE_ACCESSOR],
     encapsulation: ViewEncapsulation.None
 })
