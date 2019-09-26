@@ -213,7 +213,6 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor, OnDestroy 
             this.onMonthCellClicked(cell);
         }
     }
-    
     onSelectYearClicked(event: any): void {
         event.stopPropagation();
         this.selectYear = !this.selectYear;
@@ -842,20 +841,16 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor, OnDestroy 
             this.globalListener();
         }
     }
-    
     getlocaleDate(numberValue:any) {
         let localeChar = "";
         if (typeof this.opts.numberLabels !== "undefined") {
-            let _this = this;
-            let temp = numberValue.toString();
-
-            for (let i = 0; i < temp.length; i++) {
+            let _this = this;let temp = numberValue.toString();
+           for (let i = 0; i < temp.length; i++) {
                 if (temp[i] === "-" || temp[i] === "/") {
                     localeChar = localeChar + temp[i];
                 } else {
                     localeChar = localeChar + this.opts.numberLabels[parseInt(temp[i])];
                 }
-
             }
         } else {
             localeChar = numberValue;
@@ -866,10 +861,8 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor, OnDestroy 
     getlocaleNumber(numberValue:any) {
         let localeChar = "";
         if (typeof this.opts.numberLabels !== "undefined") {
-            let _this = this;
-            let temp = numberValue.toString();
-
-            for (let i = 0; i < temp.length; i++) {
+            let _this = this;let temp = numberValue.toString();
+             for (let i = 0; i < temp.length; i++) {
                 localeChar = localeChar + this.opts.numberLabels[parseInt(temp[i])];
             }
         } else {
