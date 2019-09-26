@@ -2460,112 +2460,7 @@ describe('MyDatePicker', () => {
         let invaliddate = getElement('.invaliddate');
         expect(invaliddate).toBe(null);
     });
-    it('locale - use ar locale', () => {
-        comp.selectedMonth = {monthTxt: '', monthNbr: 1, year: 2016};
-        comp.locale = 'ar';
-
-        comp.parseOptions();
-
-        fixture.detectChanges();
-        let btnpicker = getElement('.btnpicker');
-        btnpicker.nativeElement.click();
-
-        fixture.detectChanges();
-        let days = getElements('.caltable thead tr th');
-        expect(days.length).toBe(7);
-        expect(days[0].nativeElement.textContent).toBe('السبت');
-        expect(days[1].nativeElement.textContent).toBe('الجمعة');
-        expect(days[2].nativeElement.textContent).toBe('الخميس');
-        expect(days[3].nativeElement.textContent).toBe('الاربعاء');
-        expect(days[4].nativeElement.textContent).toBe('الثلاثاء');
-        expect(days[5].nativeElement.textContent).toBe('الاثنين');
-        expect(days[6].nativeElement.textContent).toBe('الأحد');
-
-        fixture.detectChanges();
-        let nextmonth = getElement(NEXTMONTH);
-        expect(nextmonth).not.toBe(null);
-
-        fixture.detectChanges();
-        let monthLabel = getElement('.headermonthtxt .headerlabelbtn');
-        expect(monthLabel.nativeElement.textContent).toBe('يناير');
-
-        nextmonth.nativeElement.click();
-        fixture.detectChanges();
-        monthLabel = getElement('.headermonthtxt .headerlabelbtn');
-        expect(monthLabel.nativeElement.textContent).toBe('فبراير');
-
-        nextmonth.nativeElement.click();
-        fixture.detectChanges();
-        monthLabel = getElement('.headermonthtxt .headerlabelbtn');
-        expect(monthLabel.nativeElement.textContent).toBe('مارس');
-
-        nextmonth.nativeElement.click();
-        fixture.detectChanges();
-        monthLabel = getElement('.headermonthtxt .headerlabelbtn');
-        expect(monthLabel.nativeElement.textContent).toBe('ابريل');
-
-        nextmonth.nativeElement.click();
-        fixture.detectChanges();
-        monthLabel = getElement('.headermonthtxt .headerlabelbtn');
-        expect(monthLabel.nativeElement.textContent).toBe('مايو');
-
-        nextmonth.nativeElement.click();
-        fixture.detectChanges();
-        monthLabel = getElement('.headermonthtxt .headerlabelbtn');
-        expect(monthLabel.nativeElement.textContent).toBe('يونيو');
-
-        nextmonth.nativeElement.click();
-        fixture.detectChanges();
-        monthLabel = getElement('.headermonthtxt .headerlabelbtn');
-        expect(monthLabel.nativeElement.textContent).toBe('يوليو');
-
-        nextmonth.nativeElement.click();
-        fixture.detectChanges();
-        monthLabel = getElement('.headermonthtxt .headerlabelbtn');
-        expect(monthLabel.nativeElement.textContent).toBe('أغسطس');
-
-        nextmonth.nativeElement.click();
-        fixture.detectChanges();
-        monthLabel = getElement('.headermonthtxt .headerlabelbtn');
-        expect(monthLabel.nativeElement.textContent).toBe('سبتمبر');
-
-        nextmonth.nativeElement.click();
-        fixture.detectChanges();
-        monthLabel = getElement('.headermonthtxt .headerlabelbtn');
-        expect(monthLabel.nativeElement.textContent).toBe('أكتوبر');
-
-        nextmonth.nativeElement.click();
-        fixture.detectChanges();
-        monthLabel = getElement('.headermonthtxt .headerlabelbtn');
-        expect(monthLabel.nativeElement.textContent).toBe('نوفمبر');
-
-        nextmonth.nativeElement.click();
-        fixture.detectChanges();
-        monthLabel = getElement('.headermonthtxt .headerlabelbtn');
-        expect(monthLabel.nativeElement.textContent).toBe('ديسمبر');
-
-        fixture.detectChanges();
-        let headertodaybtn = getElement('.headertodaybtn span:last-child');
-        expect(headertodaybtn).not.toBe(null);
-        expect(headertodaybtn.nativeElement.textContent).toBe('اليوم');
-
-        fixture.detectChanges();
-        let firstDayOfWeek = getElement('.caltable thead tr th:first-child');
-        expect(firstDayOfWeek).not.toBe(null);
-        expect(firstDayOfWeek.nativeElement.textContent).toBe('السبت');
-
-        fixture.detectChanges();
-        let highlight = getElements('.highlight');
-        expect(highlight).not.toBe(null);
-        expect(highlight.length).toBe(6);
-
-        comp.onUserDateInput('10/10/2016');
-        expect(comp.invalidDate).toBe(false);
-
-        fixture.detectChanges();
-        let invaliddate = getElement('.invaliddate');
-        expect(invaliddate).toBe(null);
-    });
+   
     it('selDate - initially selected date - string', () => {
         let date: string = '10/11/2017';
         comp.selectedDate = comp.parseSelectedDate(date);
@@ -2833,4 +2728,112 @@ describe('MyDatePicker', () => {
         comp.onUserDateInput('01-10-2017'); // Different date
         expect(comp.selectDate).toHaveBeenCalled();
     });
+   
+    it('locale - use ar locale', () => {
+        comp.selectedMonth = {monthTxt: '', monthNbr: 1, year: 2016};
+        comp.locale = 'ar';
+
+        comp.parseOptions();
+
+        fixture.detectChanges();
+        let btnpicker = getElement('.btnpicker');
+        btnpicker.nativeElement.click();
+
+        fixture.detectChanges();
+        let days = getElements('.caltable thead tr th');
+        expect(days.length).toBe(7);
+        expect(days[0].nativeElement.textContent).toBe('الأحد');
+        expect(days[1].nativeElement.textContent).toBe('الاثنين');
+        expect(days[2].nativeElement.textContent).toBe('الثلاثاء');
+        expect(days[3].nativeElement.textContent).toBe('الاربعاء');
+        expect(days[4].nativeElement.textContent).toBe('الخميس');
+        expect(days[5].nativeElement.textContent).toBe('الجمعة');
+        expect(days[6].nativeElement.textContent).toBe('السبت');
+
+        fixture.detectChanges();
+        let nextmonth = getElement(NEXTMONTH);
+        expect(nextmonth).not.toBe(null);
+
+        fixture.detectChanges();
+        let monthLabel = getElement('.headermonthtxt .headerlabelbtn');
+        expect(monthLabel.nativeElement.textContent).toBe('يناير');
+
+        nextmonth.nativeElement.click();
+        fixture.detectChanges();
+        monthLabel = getElement('.headermonthtxt .headerlabelbtn');
+        expect(monthLabel.nativeElement.textContent).toBe('فبراير');
+
+        nextmonth.nativeElement.click();
+        fixture.detectChanges();
+        monthLabel = getElement('.headermonthtxt .headerlabelbtn');
+        expect(monthLabel.nativeElement.textContent).toBe('مارس');
+
+        nextmonth.nativeElement.click();
+        fixture.detectChanges();
+        monthLabel = getElement('.headermonthtxt .headerlabelbtn');
+        expect(monthLabel.nativeElement.textContent).toBe('ابريل');
+
+        nextmonth.nativeElement.click();
+        fixture.detectChanges();
+        monthLabel = getElement('.headermonthtxt .headerlabelbtn');
+        expect(monthLabel.nativeElement.textContent).toBe('مايو');
+
+        nextmonth.nativeElement.click();
+        fixture.detectChanges();
+        monthLabel = getElement('.headermonthtxt .headerlabelbtn');
+        expect(monthLabel.nativeElement.textContent).toBe('يونيو');
+
+        nextmonth.nativeElement.click();
+        fixture.detectChanges();
+        monthLabel = getElement('.headermonthtxt .headerlabelbtn');
+        expect(monthLabel.nativeElement.textContent).toBe('يوليو');
+
+        nextmonth.nativeElement.click();
+        fixture.detectChanges();
+        monthLabel = getElement('.headermonthtxt .headerlabelbtn');
+        expect(monthLabel.nativeElement.textContent).toBe('أغسطس');
+
+        nextmonth.nativeElement.click();
+        fixture.detectChanges();
+        monthLabel = getElement('.headermonthtxt .headerlabelbtn');
+        expect(monthLabel.nativeElement.textContent).toBe('سبتمبر');
+
+        nextmonth.nativeElement.click();
+        fixture.detectChanges();
+        monthLabel = getElement('.headermonthtxt .headerlabelbtn');
+        expect(monthLabel.nativeElement.textContent).toBe('أكتوبر');
+
+        nextmonth.nativeElement.click();
+        fixture.detectChanges();
+        monthLabel = getElement('.headermonthtxt .headerlabelbtn');
+        expect(monthLabel.nativeElement.textContent).toBe('نوفمبر');
+
+        nextmonth.nativeElement.click();
+        fixture.detectChanges();
+        monthLabel = getElement('.headermonthtxt .headerlabelbtn');
+        expect(monthLabel.nativeElement.textContent).toBe('ديسمبر');
+
+        fixture.detectChanges();
+        let headertodaybtn = getElement('.headertodaybtn span:last-child');
+        expect(headertodaybtn).not.toBe(null);
+        expect(headertodaybtn.nativeElement.textContent).toBe('اليوم');
+
+        fixture.detectChanges();
+        let firstDayOfWeek = getElement('.caltable thead tr th:first-child');
+        expect(firstDayOfWeek).not.toBe(null);
+        expect(firstDayOfWeek.nativeElement.textContent).toBe('السبت');
+
+        fixture.detectChanges();
+        let highlight = getElements('.highlight');
+        expect(highlight).not.toBe(null);
+        expect(highlight.length).toBe(6);
+
+        comp.onUserDateInput('10-10-2016');
+        expect(comp.invalidDate).toBe(false);
+
+        fixture.detectChanges();
+        let invaliddate = getElement('.invaliddate');
+        expect(invaliddate).toBe(null);
+    });
+
 });
