@@ -862,10 +862,8 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor, OnDestroy 
         let localeChar = "";
         if (typeof this.opts.numberLabels !== "undefined") {
             let _this = this;let temp = numberValue.toString();
-             for (let i = 0; i < temp.length; i++) {
-                localeChar = localeChar + this.opts.numberLabels[parseInt(temp[i])];
-            }
-        } else {
+             for (let i = 0; i < temp.length; i++) localeChar = localeChar + this.opts.numberLabels[parseInt(temp[i])];
+             } else {
             localeChar = numberValue;
         }
         return localeChar;
