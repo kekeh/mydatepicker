@@ -2742,13 +2742,13 @@ describe('MyDatePicker', () => {
         fixture.detectChanges();
         let days = getElements('.caltable thead tr th');
         expect(days.length).toBe(7);
-        expect(days[0].nativeElement.textContent).toBe('الأحد');
-        expect(days[1].nativeElement.textContent).toBe('الاثنين');
-        expect(days[2].nativeElement.textContent).toBe('الثلاثاء');
-        expect(days[3].nativeElement.textContent).toBe('الاربعاء');
-        expect(days[4].nativeElement.textContent).toBe('الخميس');
-        expect(days[5].nativeElement.textContent).toBe('الجمعة');
-        expect(days[6].nativeElement.textContent).toBe('السبت');
+        expect(days[0].nativeElement.textContent).toBe('السبت');
+        expect(days[1].nativeElement.textContent).toBe('الأحد');
+        expect(days[2].nativeElement.textContent).toBe('الاثنين');
+        expect(days[3].nativeElement.textContent).toBe('الثلاثاء');
+        expect(days[4].nativeElement.textContent).toBe('الاربعاء');
+        expect(days[5].nativeElement.textContent).toBe('الخميس');
+        expect(days[6].nativeElement.textContent).toBe('الجمعة');
 
         fixture.detectChanges();
         let nextmonth = getElement(NEXTMONTH);
