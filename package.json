@@ -1,6 +1,6 @@
 {
-  "name": "mydatepicker",
-  "version": "2.6.6",
+  "name": "mydatepicker-fix-year-nav",
+  "version": "2.6.8",
   "description": "Angular date picker",
   "keywords": [
     "Angular",
@@ -11,7 +11,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/kekeh/mydatepicker.git"
+    "url": "https://github.com/ChamiduJ/mydatepicker.git"
   },
   "scripts": {
     "start": "webpack-dev-server --config config/webpack.dev.js --progress",
