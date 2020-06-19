@@ -83,16 +83,22 @@ To use ngModel define the application class as follows:
 ```ts
 import {IMyDpOptions} from 'mydatepicker';
 // other imports here...
-
+interface IModel = {
+    date:{
+        year: number, 
+        month: number, 
+        day: number 
+    }
+}
 export class MyTestApp {
-
+    
     public myDatePickerOptions: IMyDpOptions = {
         // other options...
         dateFormat: 'dd.mm.yyyy',
     };
 
     // Initialized to specific date (09.10.2018).
-    public model: any = { date: { year: 2018, month: 10, day: 9 } };
+    public model: IModel = { date: { year: 2018, month: 10, day: 9 } };
 
     constructor() { }
 }
