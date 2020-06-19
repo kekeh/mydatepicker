@@ -362,7 +362,15 @@ export class LocaleService {
             todayBtnTxt: "Täna",
             firstDayOfWeek: "mo",
             sunHighlight: true
-        }
+        },
+        "mm": {
+            dayLabels: {su: "နွေ", mo: "လာ", tu: "ဂါ", we: "ဟူး", th: "တေး", fr: "ကြာ", sa: "နေ"},
+            monthLabels: { 1: "ဇန်", 2: "ဖေ", 3: "မတ်", 4: "ဧပြီ", 5: "မေ", 6: "ဇွန်", 7: "ဇူ", 8: "ဩ", 9: "စက်", 10: "အောက်", 11: "နို", 12: "ဒီ" },
+            dateFormat: "လ/ရက်/ခုနှစ်",
+            todayBtnTxt: "ယနေ့",
+            firstDayOfWeek: "လာ",
+            sunHighlight: true,
+        },
     };
 
     getLocaleOptions(locale: string): IMyOptions {
