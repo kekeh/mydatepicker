@@ -621,10 +621,12 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor, OnDestroy 
         }
     }
 
-    clearDate(): void {
+    clearDate(isNotSetFocus?: boolean): void {
         // Clears the date
         this.updateDateValue({year: 0, month: 0, day: 0});
-        this.setFocusToInputBox();
+        if(!isNotSetFocus){
+            this.setFocusToInputBox();
+        }
     }
 
     decreaseIncreaseDate(decrease: boolean): void {
